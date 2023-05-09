@@ -1,6 +1,5 @@
 const Book = ({title, author, imgUrl, description}) =>{
 
-
     return(
         <>
             <div className="grid-item">

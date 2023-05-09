@@ -12,7 +12,7 @@ const Intro = () =>{
             document.body.classList.remove('intro-background');
         }
 
-    },[])
+    },[]) // eslint-disable-line react-hooks/exhaustive-deps
     return(
 
         <div className="intro wrapper">
