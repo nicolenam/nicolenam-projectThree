@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
 import Book from "./Book";
+import loader from '../assets/call-to-action.png';
+ 
 
 const Collection = () => {
 
@@ -8,12 +10,12 @@ const Collection = () => {
     const category = new URLSearchParams(path.search);
     const userChoice = category.get('category');
 
-    console.log(userChoice);
-
+    console.log(userChoice, 'omg!!!!! it is here 🌈');
 
     const [books, setBooks] = useState([]);
     const [authors, setAuthors] = useState([]);
     const [images, setImages] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const url = new URL("http://openlibrary.org/search.json");
 
@@ -51,25 +53,27 @@ const Collection = () => {
                         const bookUrl = `http://openlibrary.org${key}.json`;
                         const bookResponse = await fetch(bookUrl);
                         const bookData = await bookResponse.json();
-                        console.log('book details object', bookData);
+                        // console.log('book details object', bookData);
                         return bookData;
                         });
 
+                        setBooks(await Promise.all(bookDetailsArray));
                     // booksDetailsArray also returns a promise, and Promise.all() makes sure that I get all the responses back before the books state gets updated. 
-                    setBooks(await Promise.all(bookDetailsArray));
-
+                    
                     const imgKeys = booksWithAuthImg.map((bookObj)=> bookObj.cover_i);
                     // console.log('image keys array', imgKeys);
-
+                    
                     const bookImagesArray = imgKeys.map( async (key) =>{
-
+                        
                         const imgUrl = `http://covers.openlibrary.org/b/ID/${key}-L.jpg`;
-
+                        
                         const imgResponse = await fetch(imgUrl);
-                        console.log('img file data', imgResponse.url);
+                        // console.log('img file data', imgResponse.url);
                         return imgResponse.url;
                     })
+                    
                     setImages(await Promise.all(bookImagesArray));
+                    setIsLoading(false);
             }catch (err) {
                 console.log(err);
             }
@@ -79,12 +83,22 @@ const Collection = () => {
 
     return (
         <div className="collection-grid">
-
         {
+            isLoading?
+                <div className="loader-container">
+                    <img src={loader} className="loader" alt="spinning loader"/>
+                </div>
+            :
             books.map((book, index)=>{
 
                 return(
-                    <Book key={index} title={book.title} description={book.description? book.description.value || book.description : 'Description is currently unavailable'} author={authors[index]} imgUrl={images[index]}/>
+                    
+                    <Book 
+                        key={index} 
+                        title={book.title} 
+                        description={book.description? book.description.value || book.description : 'Description is currently unavailable'} 
+                        author={authors[index]} 
+                        imgUrl={images[index]}/>
                 )
 
             })

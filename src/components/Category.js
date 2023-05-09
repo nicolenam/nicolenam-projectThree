@@ -37,7 +37,7 @@ const Category = () =>{
                     <p>
                     Discover your book-venture! Choose a bookegory that captivates your imagination and let the reading magic begin!
                     </p>
-                        <img className="category-img" src={categoryIcons} alt="category icons"/>
+                    <img className="category-img" src={categoryIcons} alt="category icons"/>
                 </div>
                 <ul className="category-list">
                     <CategoryItems handleClick={handleClick} />

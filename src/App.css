@@ -171,6 +171,7 @@ h2{
 
 .category-content{
     width: 100%;
+    position: relative;
 }
 
 .category-content h2 p{
@@ -226,9 +227,9 @@ h2{
 
 .category-img{
     position: absolute;
-    top: 400px;
-    left: 100px;
-    width: 600px;
+    top: 300px;
+    left: 0;
+    width: 450px;
     z-index: -10;
 }
 
@@ -240,3 +241,27 @@ h2{
 .category-link:visited{
     text-decoration: none;
 }
+
+/* COLLECTION STYLES START */
+
+.loader-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loader{
+    width: 300px;
+    animation: loading 3s linear infinite;
+}
+
+@keyframes  loading {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
