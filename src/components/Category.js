@@ -1,13 +1,17 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import categoryIcons from "../assets/bookegory.png";
 import CategoryItems from "./CategoryItems";
 
 const Category = () =>{
 
-    const handleClick = (category) =>{
-        console.log('clicked???', category);
-    }
+    const [userChoice, setUserChoice] = useState('');
 
+    const handleClick = (category) =>{
+        console.log('User chose:', category);
+        setUserChoice(category);
+    }
+    
     useEffect(()=>{
 
         document.body.classList.add('category-background');
@@ -25,14 +29,24 @@ const Category = () =>{
                     <p>
                     Discover your book-venture! Choose a bookegory that captivates your imagination and let the reading magic begin!
                     </p>
+                    <img className="category-img" src={categoryIcons} alt="category icons"/>
                 </div>
-                <ul className="category-list">
-                    <CategoryItems handleClick={handleClick} />
-                </ul>
+                {
+      
+                    userChoice?
+                    <ul className="category-list">
+                        <Link to={`/collection?category=${userChoice}`}className="category-link" >
+                            <CategoryItems handleClick={handleClick} />
+                        </Link>
+                    </ul> 
+                    :
+                    <ul className="category-list">
+                        <CategoryItems handleClick={handleClick} />
+                    </ul> 
+
+                }
             </div>
-            <div className="category-img">
-                <img src={categoryIcons}/>
-            </div>
+            
         </div>
     )
 }

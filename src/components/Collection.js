@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import Book from "./Book";
 
-const Collection = ({userInput}) => {
+const Collection = () => {
+
+    const path = useLocation();
+    const category = new URLSearchParams(path.search);
+    const userChoice = category.get('category');
+
+    console.log(userChoice);
+
 
     const [books, setBooks] = useState([]);
     const [authors, setAuthors] = useState([]);
@@ -11,7 +19,7 @@ const Collection = ({userInput}) => {
 
     url.search = new URLSearchParams({
         subject: "picture books",
-        q: "animals",
+        q: userChoice,
         audience: "juvenile"
     });
 

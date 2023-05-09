@@ -6,7 +6,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 
 body{
     font-family: 'Poppins', sans-serif; 
-    overflow: hidden;
+    color: #000;
 }
 
 .wrapper{
@@ -162,8 +162,7 @@ h2{
 .category-container{
     display: flex;
     align-items: start;
-    margin-top: 50px;
-    height: 100vh;
+    margin-top: 100px;
 }
 
 .category-background{
@@ -226,12 +225,18 @@ h2{
 }
 
 .category-img{
-    position: relative;
-    left: -50px;
-    top: -500px;
+    position: absolute;
+    top: 400px;
+    left: 100px;
+    width: 600px;
     z-index: -10;
 }
 
-/* .category-img img{
-    z-index: 0;
-} */
+.category-link{
+    text-decoration: none;
+    color: inherit;
+}
+
+.category-link:visited{
+    text-decoration: none;
+}
