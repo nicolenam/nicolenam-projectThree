@@ -244,6 +244,10 @@ h2{
 
 /* COLLECTION STYLES START */
 
+.collection{
+    animation: fadeIn 1s ease-in;
+}
+
 .loader-container{
     display: flex;
     justify-content: center;
@@ -254,6 +258,10 @@ h2{
 .loader{
     width: 300px;
     animation: loading 3s linear infinite;
+}
+
+.collection-background{
+    background-color: #ffc544;
 }
 
 @keyframes  loading {

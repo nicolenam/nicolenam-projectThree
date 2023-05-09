@@ -25,6 +25,16 @@ const Collection = () => {
         audience: "juvenile"
     });
 
+    useEffect(()=>{
+
+        document.body.classList.add('collection-background');
+
+        return() => {
+        document.body.classList.remove('collection-background');
+        }
+
+    },[]) // eslint-disable-line react-hooks/exhaustive-deps
+
     useEffect(() => {
 
         const getBookData = async () => {
@@ -82,7 +92,7 @@ const Collection = () => {
     }, []);
 
     return (
-        <div className="collection-grid">
+        <div className="collection">
         {
             isLoading?
                 <div className="loader-container">

@@ -13,6 +13,7 @@ const CategoryItems = ({handleClick}) =>{
         },
         {
             id: 3,
+            // Adventure is not working >.<
             category: "Adventure",
             color: "cat-yellow"
         },
