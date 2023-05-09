@@ -86,6 +86,8 @@ const Collection = () => {
                     setIsLoading(false);
             }catch (err) {
                 console.log(err);
+                //Adventure does not work. error handling UI needed 
+                setIsLoading(false);
             }
         };
         getBookData();

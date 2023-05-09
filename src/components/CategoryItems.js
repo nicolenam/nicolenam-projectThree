@@ -14,6 +14,7 @@ const CategoryItems = ({handleClick}) =>{
         {
             id: 3,
             // Adventure is not working >.<
+            // Good opportunity to error handle 
             category: "Adventure",
             color: "cat-yellow"
         },
