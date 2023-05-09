@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import Book from './Book';
+import React, { useState, useEffect } from "react";
+import Book from "./Book";
 
 const Collection = ({userInput}) => {
 
@@ -7,12 +7,12 @@ const Collection = ({userInput}) => {
     const [authors, setAuthors] = useState([]);
     const [images, setImages] = useState([]);
 
-    const url = new URL('http://openlibrary.org/search.json');
+    const url = new URL("http://openlibrary.org/search.json");
 
     url.search = new URLSearchParams({
-        subject: 'picture books',
-        q: 'animals',
-        audience: 'juvenile'
+        subject: "picture books",
+        q: "animals",
+        audience: "juvenile"
     });
 
     useEffect(() => {
