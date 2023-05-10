@@ -20,6 +20,18 @@ const Collection = ({bookArray, setBookArray}) => {
     const [images, setImages] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [inBookArray, setInBookArray] = useState(false);
+    const [dataLength, setDataLength] = useState('');
+    const [firstNum, setFirstNum] =  useState(''); 
+
+    useEffect(()=>{
+
+        console.log(dataLength, 'new data length');
+
+            const min = 0;
+            const max = dataLength -12;
+            setFirstNum(Math.floor(Math.random() * (max - min + 1)) + min); 
+
+    },[dataLength]);
 
     const url = new URL("http://openlibrary.org/search.json");
 
@@ -36,10 +48,12 @@ const Collection = ({bookArray, setBookArray}) => {
                 const response = await fetch(url);
                 const collectionData = await response.json();
 
-                // console.log(collectionData.docs)
+                setDataLength(collectionData.docs.length);
 
                 // filter and make array of books with property name cover_i and author_name
-                const booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined).slice(10,22);
+                const booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined).slice(firstNum, firstNum + 12);
+
+                console.log(firstNum, 'this is random first num')
 
                 // console.log(booksWithAuthImg);
 
