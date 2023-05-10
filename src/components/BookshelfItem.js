@@ -11,10 +11,10 @@ const BookshelfItem = ({color, bookArray}) =>{
                     console.log("book item:", book)
                     return(
                         book?
-                            <img className="bookshelf-img" src={book} alt="book url" />
+                            <img className="bookshelf-book" src={book} alt="book url" />
                         :
                         <Link to="/category">
-                            <img src={addBtn} alt="plus button icon" />
+                            <img className="bookshelf-img" src={addBtn} alt="plus button icon" />
                         </Link>    
                     )
                 })
