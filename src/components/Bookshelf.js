@@ -23,20 +23,42 @@ const Bookshelf = ({bookArray}) =>{
                     <div className="bookshelf-item orange-grid">
                         <img className="bookshelf-icon" src={BookshelfIcon} alt="pink circle smiley icon" />
                     </div>
-                    <BookshelfItem color="blue" bookArray={bookArray}/>
-                    <BookshelfItem color="blue" bookArray={bookArray}/>
-                    <BookshelfItem color="blue" bookArray={bookArray}/>
-                    <BookshelfItem color="blue" bookArray={bookArray}/>
-                    <BookshelfItem color="orange" bookArray={bookArray}/>
-                    <BookshelfItem color="white" bookArray={bookArray}/>
-                    <BookshelfItem color="white" bookArray={bookArray}/>
-                    <BookshelfItem color="white" bookArray={bookArray}/>
-                    <BookshelfItem color="white" bookArray={bookArray}/>
-                    <BookshelfItem color="orange" bookArray={bookArray}/>
-                    <BookshelfItem color="white" bookArray={bookArray}/>
-                    <BookshelfItem color="white" bookArray={bookArray}/>
-                    <BookshelfItem color="white" bookArray={bookArray}/>
-                    <BookshelfItem color="white" bookArray={bookArray}/>
+                    {
+                        bookArray && bookArray.length > 0 ?
+                            <>
+                                <BookshelfItem color="blue" bookArray={[bookArray[0]]}/>
+                                <BookshelfItem color="blue" bookArray={[bookArray[1]]}/>
+                                <BookshelfItem color="blue" bookArray={[bookArray[2]]}/>
+                                <BookshelfItem color="blue" bookArray={[bookArray[3]]}/>
+                                <BookshelfItem color="orange" bookArray={[bookArray[4]]}/>
+                                <BookshelfItem color="white" bookArray={[bookArray[5]]}/>
+                                <BookshelfItem color="white" bookArray={[bookArray[6]]}/>
+                                <BookshelfItem color="white" bookArray={[bookArray[7]]}/>
+                                <BookshelfItem color="white" bookArray={[bookArray[8]]}/>
+                                <BookshelfItem color="orange" bookArray={[bookArray[9]]}/>
+                                <BookshelfItem color="white" bookArray={[bookArray[10]]}/>
+                                <BookshelfItem color="white" bookArray={[bookArray[11]]}/>
+                                <BookshelfItem color="white" bookArray={[bookArray[12]]}/>
+                                <BookshelfItem color="white" bookArray={[bookArray[13]]}/>
+                            </>
+                            :
+                            <>
+                                <BookshelfItem color="blue"/>
+                                <BookshelfItem color="blue"/>
+                                <BookshelfItem color="blue"/>
+                                <BookshelfItem color="blue"/>
+                                <BookshelfItem color="orange"/>
+                                <BookshelfItem color="white"/>
+                                <BookshelfItem color="white" />
+                                <BookshelfItem color="white"/>
+                                <BookshelfItem color="white"/>
+                                <BookshelfItem color="orange"/>
+                                <BookshelfItem color="white"/>
+                                <BookshelfItem color="white"/>
+                                <BookshelfItem color="white"/>
+                                <BookshelfItem color="white"/>
+                            </>
+                    }
                 </div>
             </div>
         </div>
