@@ -7,9 +7,18 @@ const BookshelfItem = ({color, bookArray}) =>{
 
     return(
         <div className={`bookshelf-item ${color}-grid`} >
-            <Link to="/category">
-                <img className="bookshelf-img" src={addBtn} alt="plus button icon" />
-            </Link>
+        {
+            bookArray && bookArray.length > 0 ?
+                bookArray.map((book)=>{
+                    return(
+                    <img className="bookshelf-img" src={book} alt="book image url" />
+                    )
+                })
+                :
+                <Link to="/category">
+                    <img className="bookshelf-img" src={addBtn} alt="plus button icon" />
+                </Link>
+        }
         </div>
     )
 }
