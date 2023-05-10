@@ -26,6 +26,7 @@ const Bookshelf = ({bookArray}) =>{
                     {
                         bookArray && bookArray.length > 0 ?
                             <>
+                                {/* created single array for each one that is passed */}
                                 <BookshelfItem color="blue" bookArray={[bookArray[0]]}/>
                                 <BookshelfItem color="blue" bookArray={[bookArray[1]]}/>
                                 <BookshelfItem color="blue" bookArray={[bookArray[2]]}/>

@@ -19,6 +19,7 @@ const Collection = ({bookArray, setBookArray}) => {
     const [authors, setAuthors] = useState([]);
     const [images, setImages] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [inBookArray, setInBookArray] = useState(false);
 
     const url = new URL("http://openlibrary.org/search.json");
 
@@ -97,21 +98,31 @@ const Collection = ({bookArray, setBookArray}) => {
     },[]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleClick = (imgUrl) =>{
-        console.log('clicked',imgUrl);
-        setBookArray(prev => [...prev, imgUrl]);
+        // if imgUrl exists in bookArray do not update setBookArray
+        if(!bookArray.includes(imgUrl)){
+            setInBookArray(false);
+            setBookArray(prev => [...prev, imgUrl]);
+            console.log(inBookArray);
+        }else{
+            setInBookArray(true);
+            // find the matching book and gray it out. make it unclickable.
+        }
     }
 
-    // useEffect(()=>{
-    //     console.log(bookArray, '??')
-    // },[bookArray])
-
+    useEffect(()=>{
+        inBookArray ? 
+        console.log("oops you cannot add twice", inBookArray)
+        :
+        console.log(inBookArray);
+    },[inBookArray]);
+    
     return (
         <div className="wrapper">
-        {
-            isLoading? 
-            null : <h2>Bookiverse Quest of {userChoice}</h2>
-            
-        }
+            {
+                isLoading? 
+                null : <h2>Bookiverse Quest of {userChoice}</h2>
+                
+            }
             <div className="collection-grid">
             {
                 isLoading?
