@@ -3,15 +3,20 @@ import addBtn from "../assets/plus-icon.png";
 
 const BookshelfItem = ({color, bookArray}) =>{
 
-    console.log('BookshelfItem: ', bookArray)
 
     return(
         <div className={`bookshelf-item ${color}-grid`} >
         {
             bookArray && bookArray.length > 0 ?
                 bookArray.map((book)=>{
+                    console.log("book item:", book)
                     return(
-                    <img className="bookshelf-img" src={book} alt="book image url" />
+                        book?
+                            <img className="bookshelf-img" src={book} alt="book url" />
+                        :
+                        <Link to="/category">
+                            <img className="bookshelf-img" src={addBtn} alt="plus button icon" />
+                        </Link>    
                     )
                 })
                 :
