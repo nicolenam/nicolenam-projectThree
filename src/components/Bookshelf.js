@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import BookshelfItem from "./BookshelfItem";
 import BookshelfIcon from "../assets/bookshelf-icon.png";
 
-const Bookshelf = () =>{
+const Bookshelf = ({bookArray}) =>{
+
+    console.log('book array:', bookArray);
 
     useEffect(()=>{
 
@@ -21,20 +23,20 @@ const Bookshelf = () =>{
                     <div className="bookshelf-item orange-grid">
                         <img className="bookshelf-icon" src={BookshelfIcon} alt="pink circle smiley icon" />
                     </div>
-                    <BookshelfItem color="blue" />
-                    <BookshelfItem color="blue"/>
-                    <BookshelfItem color="blue"/>
-                    <BookshelfItem color="blue"/>
-                    <BookshelfItem color="orange"/>
-                    <BookshelfItem color="white"/>
-                    <BookshelfItem color="white"/>
-                    <BookshelfItem color="white"/>
-                    <BookshelfItem color="white"/>
-                    <BookshelfItem color="orange"/>
-                    <BookshelfItem color="white"/>
-                    <BookshelfItem color="white"/>
-                    <BookshelfItem color="white"/>
-                    <BookshelfItem color="white"/>
+                    <BookshelfItem color="blue" bookArray={bookArray}/>
+                    <BookshelfItem color="blue" bookArray={bookArray}/>
+                    <BookshelfItem color="blue" bookArray={bookArray}/>
+                    <BookshelfItem color="blue" bookArray={bookArray}/>
+                    <BookshelfItem color="orange" bookArray={bookArray}/>
+                    <BookshelfItem color="white" bookArray={bookArray}/>
+                    <BookshelfItem color="white" bookArray={bookArray}/>
+                    <BookshelfItem color="white" bookArray={bookArray}/>
+                    <BookshelfItem color="white" bookArray={bookArray}/>
+                    <BookshelfItem color="orange" bookArray={bookArray}/>
+                    <BookshelfItem color="white" bookArray={bookArray}/>
+                    <BookshelfItem color="white" bookArray={bookArray}/>
+                    <BookshelfItem color="white" bookArray={bookArray}/>
+                    <BookshelfItem color="white" bookArray={bookArray}/>
                 </div>
             </div>
         </div>

@@ -1,8 +1,9 @@
-// import { useEffect } from "react";
 import { Link } from "react-router-dom"; 
 import addBtn from "../assets/plus-icon.png";
 
-const BookshelfItem = ({color}) =>{
+const BookshelfItem = ({color, bookArray}) =>{
+
+    console.log('BookshelfItem: ', bookArray)
 
     return(
         <div className={`bookshelf-item ${color}-grid`} >

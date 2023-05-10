@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
-import Book from "./Book";
 import loader from '../assets/call-to-action.png';
+import Book from "./Book";
+import Bookshelf from './Bookshelf';
  
 
-const Collection = () => {
+const Collection = ({bookArray, setBookArray}) => {
+
+    // console.log("set book array ", bookArray);
 
     const path = useLocation();
     const category = new URLSearchParams(path.search);
     const userChoice = category.get('category');
 
-    console.log(userChoice, 'omg!!!!! it is here 🌈');
+    // console.log(userChoice, 'omg!!!!! it is here 🌈');
 
     const [books, setBooks] = useState([]);
     const [authors, setAuthors] = useState([]);
@@ -24,16 +27,6 @@ const Collection = () => {
         q: userChoice,
         audience: "juvenile"
     });
-
-    useEffect(()=>{
-
-        document.body.classList.add('collection-background');
-
-        return() => {
-        document.body.classList.remove('collection-background');
-        }
-
-    },[]) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
 
@@ -91,7 +84,26 @@ const Collection = () => {
             }
         };
         getBookData();
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    useEffect(()=>{
+
+        document.body.classList.add('collection-background');
+
+        return() => {
+        document.body.classList.remove('collection-background');
+        }
+
+    },[]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    const handleClick = (imgUrl) =>{
+        console.log('clicked',imgUrl);
+        setBookArray(prev => [...prev, imgUrl]);
+    }
+
+    // useEffect(()=>{
+    //     console.log(bookArray, '??')
+    // },[bookArray])
 
     return (
         <div className="wrapper">
@@ -105,6 +117,7 @@ const Collection = () => {
                 isLoading?
                     <div className="loader-container">
                         <img src={loader} className="loader" alt="spinning loader"/>
+                        <p>Loading...</p>
                     </div>
                 :
                 books.map((book, index)=>{
@@ -112,11 +125,14 @@ const Collection = () => {
                     return(
                         
                         <Book 
-                            key={index} 
+                            key={book.key} 
                             title={book.title} 
                             description={book.description? book.description.value || book.description : 'Description is currently unavailable'} 
                             author={authors[index]} 
-                            imgUrl={images[index]}/>
+                            imgUrl={images[index]}
+                            handleClick={handleClick}
+                            />
+
                     )
 
                 })

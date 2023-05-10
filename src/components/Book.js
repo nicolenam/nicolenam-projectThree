@@ -1,12 +1,12 @@
 import heartIcon from "../assets/heart-icon.png"
 
-const Book = ({title, author, imgUrl, description}) =>{
+const Book = ({title, author, imgUrl, description, handleClick}) =>{
 
     return(
         <div className="book-item">
             <img className="heart-icon" src={heartIcon} alt="heart icon" />
             <div className="img-container">
-                <img src={imgUrl} alt={title} />
+                <img src={imgUrl} alt={title} onClick={()=>{handleClick(imgUrl)}}/>
                 <div className="heart-icon"></div>
             </div>
             <div>
