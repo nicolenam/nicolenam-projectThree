@@ -94,28 +94,34 @@ const Collection = () => {
     }, []);
 
     return (
-        <div className="collection">
+        <div className="wrapper">
         {
-            isLoading?
-                <div className="loader-container">
-                    <img src={loader} className="loader" alt="spinning loader"/>
-                </div>
-            :
-            books.map((book, index)=>{
-
-                return(
-                    
-                    <Book 
-                        key={index} 
-                        title={book.title} 
-                        description={book.description? book.description.value || book.description : 'Description is currently unavailable'} 
-                        author={authors[index]} 
-                        imgUrl={images[index]}/>
-                )
-
-            })
+            isLoading? 
+            null : <h2>Bookiverse Quest of {userChoice}</h2>
+            
         }
+            <div className="collection-grid">
+            {
+                isLoading?
+                    <div className="loader-container">
+                        <img src={loader} className="loader" alt="spinning loader"/>
+                    </div>
+                :
+                books.map((book, index)=>{
 
+                    return(
+                        
+                        <Book 
+                            key={index} 
+                            title={book.title} 
+                            description={book.description? book.description.value || book.description : 'Description is currently unavailable'} 
+                            author={authors[index]} 
+                            imgUrl={images[index]}/>
+                    )
+
+                })
+            }
+            </div>
         </div>
     );
 }

@@ -36,7 +36,6 @@ const Bookshelf = () =>{
                     <BookshelfItem color="white"/>
                     <BookshelfItem color="white"/>
                 </div>
-                {/* <div className="grid-item"><i className="fa-solid fa-circle-plus"></i></div> */}
             </div>
         </div>
     )
