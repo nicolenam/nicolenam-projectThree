@@ -43,3 +43,17 @@ Components
 
     stretch goals: branded cover not found images, error handling for cover images, store bookshelf in firebase,
     paginate the Collections
+
+    TODO:
+
+    error handling logic
+    
+        if the user adds more than 14 show error message and show a button that navigates them to bookshelf
+        if the user clicks on the same book twice show error message
+
+
+    ability to remove books from Bookshelf
+        when it is full give them the option to remove books from the bookshelf
+
+
+    navigation 

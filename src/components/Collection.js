@@ -18,9 +18,9 @@ const Collection = ({bookArray, setBookArray}) => {
     const [authors, setAuthors] = useState([]);
     const [images, setImages] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [inBookArray, setInBookArray] = useState(false);
     const [dataLength, setDataLength] = useState('');
     const [isError, setIsError] = useState(false);
+
     // const [firstNum, setFirstNum] =  useState(''); 
 
     useEffect(()=>{
@@ -117,9 +117,8 @@ const Collection = ({bookArray, setBookArray}) => {
 
     const handleClick = (imgUrl) =>{
         setIsError(false);
-        // if imgUrl exists in bookArray do not update setBookArray
+        // if imgUrl does not exist in bookArray update setBookArray
         if(!bookArray.includes(imgUrl)){
-            setInBookArray(false);
             if(bookArray.length < 14){
                 setBookArray(prev => [...prev, imgUrl]);
                 console.log('added', isError)
@@ -127,19 +126,9 @@ const Collection = ({bookArray, setBookArray}) => {
                 console.log('you cannot add more than 14');
                 setIsError(true);
             }
-            // console.log(inBookArray);
-        }else{
-            setInBookArray(true);
-            // find the matching book and gray it out. make it unclickable.
         }
     }
 
-    useEffect(()=>{
-        inBookArray ? 
-        console.log("oops you cannot add twice", inBookArray)
-        :
-        console.log(inBookArray);
-    },[inBookArray]);
     
     return (
         <div className="wrapper">
@@ -160,11 +149,11 @@ const Collection = ({bookArray, setBookArray}) => {
                 isLoading?
                     <div className="loader-container">
                         <img src={loader} className="loader" alt="spinning loader"/>
-                        <p>Loading...</p>
                     </div>
                 :
                 books.map((book, index)=>{
-
+                    const isBookInArray = bookArray.includes(images[index]);
+                    console.log(isBookInArray);
                     return(
                         
                         <Book 
@@ -174,6 +163,7 @@ const Collection = ({bookArray, setBookArray}) => {
                             author={authors[index]} 
                             imgUrl={images[index]}
                             handleClick={handleClick}
+                            bookInArray={isBookInArray}
                             />
 
                     )
