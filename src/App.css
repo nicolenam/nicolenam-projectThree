@@ -17,8 +17,13 @@ body{
 
 p{
     font-family: 'Montserrat', sans-serif; 
+    margin-top: 0;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+  }
 
 /* INTRO STYLES */
 
@@ -259,14 +264,36 @@ h2{
     text-align: center;
 }
 
+
+.collection-background{
+    background-color: #ffc544;
+}
+
 .loader{
     width: 300px;
     animation: loading 3s linear infinite;
 }
 
-.collection-background{
-    background-color: #ffc544;
+.collection-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.bookshelf-link{
+    text-align: center;
+}
+
+.bookshelf-link img{
+    width: 50px;
+    cursor: pointer;
+}
+
+.bookshelf-link p{
+    cursor: pointer;
+    font-weight: 700;
+}
+
 
 @keyframes  loading {
     0%{
@@ -321,6 +348,21 @@ h2{
     scale: 1.2;
 }
 
+.disable-click{
+    pointer-events: none;
+    animation: fadeOut .3s ease-in;
+    opacity: .5;
+}
+
+@keyframes fadeOut {
+    0%{
+        opacity: 1
+    }
+    100%{
+        opacity: .5
+    }
+}
+
 /* ERROR STYLES */
 
 .error-container{
@@ -328,7 +370,7 @@ h2{
     position: relative;
 }
 
-.error-container img{
+.error-container-img{
     width: 600px;
 }
 
@@ -347,8 +389,19 @@ h2{
     margin-top: 5px;
 }
 
-.error-message span{
+.error-message span, .limit-message span{
     font-size: 50px;
     font-weight: 800;
     text-transform: uppercase;
+}
+
+.limit-message{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+    width: 300px;
+    position: absolute;
+    top: 200px;    
+    left: 50%;
+    transform: translateX(-50%);
 }

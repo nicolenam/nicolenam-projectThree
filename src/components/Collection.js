@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import loader from '../assets/call-to-action.png';
 import Book from "./Book";
 import DisplayError from "./DisplayError";
+import LimitMessage from "./LimitMessage";
+import BookIcon from "../assets/book-icon.png";
+
  
 const Collection = ({bookArray, setBookArray}) => {
 
@@ -18,14 +21,15 @@ const Collection = ({bookArray, setBookArray}) => {
     const [authors, setAuthors] = useState([]);
     const [images, setImages] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [inBookArray, setInBookArray] = useState(false);
     const [dataLength, setDataLength] = useState('');
     const [isError, setIsError] = useState(false);
+    const [overMaxNum, setOverMaxNum] = useState(false);
+
     // const [firstNum, setFirstNum] =  useState(''); 
 
     useEffect(()=>{
 
-        console.log(dataLength, 'new data length');
+        // console.log(dataLength, 'new data length');
 
             // const min = 0;
             // const max = dataLength -12;
@@ -116,69 +120,71 @@ const Collection = ({bookArray, setBookArray}) => {
     },[]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleClick = (imgUrl) =>{
-        setIsError(false);
-        // if imgUrl exists in bookArray do not update setBookArray
+        // if imgUrl does not exist in bookArray update setBookArray
+        setIsError(false); 
         if(!bookArray.includes(imgUrl)){
-            setInBookArray(false);
             if(bookArray.length < 14){
                 setBookArray(prev => [...prev, imgUrl]);
-                console.log('added', isError)
             }else if (bookArray.length === 14){
+                setOverMaxNum(true);
                 console.log('you cannot add more than 14');
-                setIsError(true);
             }
-            // console.log(inBookArray);
-        }else{
-            setInBookArray(true);
-            // find the matching book and gray it out. make it unclickable.
         }
     }
 
-    useEffect(()=>{
-        inBookArray ? 
-        console.log("oops you cannot add twice", inBookArray)
-        :
-        console.log(inBookArray);
-    },[inBookArray]);
     
     return (
         <div className="wrapper">
             {
                 isLoading? 
-                null : <h2>Bookiverse Quest of {userChoice}</h2>
-                
+                    <div className="loader-container">
+                        <img src={loader} className="loader" alt="spinning loader"/>
+                    </div> : 
+                    <>
+                        <div className="collection-title">
+                            <h2>Bookiverse Quest of {userChoice}</h2>   
+                            <Link to="/bookshelf">
+                                <div className="bookshelf-link">
+                                    <img src={BookIcon} alt="books icon" />
+                                    <p>View Bookshelf</p>
+                                </div>
+                            </Link>
+                        </div>
+                    </>
             }
             {
                 isError?
-                <DisplayError />
-                :
-                null
-
+                <DisplayError />:null
             }
+
+            {
+                overMaxNum?
+                <LimitMessage />:null
+            }
+
             <div className="collection-grid">
             {
-                isLoading?
-                    <div className="loader-container">
-                        <img src={loader} className="loader" alt="spinning loader"/>
-                        <p>Loading...</p>
-                    </div>
-                :
-                books.map((book, index)=>{
+                overMaxNum && !isLoading ? 
+                null:
+                (
+                    books.map((book, index)=>{
 
-                    return(
-                        
-                        <Book 
-                            key={book.key} 
-                            title={book.title} 
-                            description={book.description? book.description.value || book.description : 'Description is currently unavailable'} 
-                            author={authors[index]} 
-                            imgUrl={images[index]}
-                            handleClick={handleClick}
-                            />
+                        const isBookInArray = bookArray.includes(images[index]);
+                        return(
+                            
+                            <Book 
+                                key={book.key} 
+                                title={book.title} 
+                                description={book.description? book.description.value || book.description : 'Description is currently unavailable'} 
+                                author={authors[index]} 
+                                imgUrl={images[index]}
+                                handleClick={handleClick}
+                                bookInArray={isBookInArray}
+                                />
 
-                    )
-
-                })
+                        )
+                    })
+                )
             }
             </div>
         </div>
