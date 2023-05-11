@@ -116,11 +116,18 @@ const Collection = ({bookArray, setBookArray}) => {
     },[]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleClick = (imgUrl) =>{
+        setIsError(false);
         // if imgUrl exists in bookArray do not update setBookArray
         if(!bookArray.includes(imgUrl)){
             setInBookArray(false);
-            setBookArray(prev => [...prev, imgUrl]);
-            console.log(inBookArray);
+            if(bookArray.length < 14){
+                setBookArray(prev => [...prev, imgUrl]);
+                console.log('added', isError)
+            }else if (bookArray.length === 14){
+                console.log('you cannot add more than 14');
+                setIsError(true);
+            }
+            // console.log(inBookArray);
         }else{
             setInBookArray(true);
             // find the matching book and gray it out. make it unclickable.
