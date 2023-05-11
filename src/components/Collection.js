@@ -82,26 +82,25 @@ const Collection = ({bookArray, setBookArray}) => {
                         return bookData;
                         });
 
-                        setBooks(await Promise.all(bookDetailsArray));
-                    // booksDetailsArray also returns a promise, and Promise.all() makes sure that I get all the responses back before the books state gets updated. 
-                    
-                    const imgKeys = booksWithAuthImg.map((bookObj)=> bookObj.cover_i);
-                    // console.log('image keys array', imgKeys);
-                    
-                    const bookImagesArray = imgKeys.map( async (key) =>{
+                        // booksDetailsArray also returns a promise, and Promise.all() makes sure that I get all the responses back before the books state gets updated. 
                         
-                        const imgUrl = `http://covers.openlibrary.org/b/ID/${key}-L.jpg`;
+                        const imgKeys = booksWithAuthImg.map((bookObj)=> bookObj.cover_i);
+                        // console.log('image keys array', imgKeys);
                         
-                        const imgResponse = await fetch(imgUrl);
-                        // console.log('img file data', imgResponse.url);
-                        return imgResponse.url;
-                    })
-                    
-                    setImages(await Promise.all(bookImagesArray));
+                        const bookImagesArray = imgKeys.map( async (key) =>{
+                            
+                            const imgUrl = `http://covers.openlibrary.org/b/ID/${key}-L.jpg`;
+                            
+                            const imgResponse = await fetch(imgUrl);
+                            // console.log('img file data', imgResponse.url);
+                            return imgResponse.url;
+                        })
+                        
                     setIsLoading(false);
+                    setBooks(await Promise.all(bookDetailsArray));
+                    setImages(await Promise.all(bookImagesArray));
             }catch (err) {
                 console.log("ERROR:", err);
-                //Adventure does not work. error handling UI needed
                 setIsError(true); 
                 setIsLoading(false);
             }
