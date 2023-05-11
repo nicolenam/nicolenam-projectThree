@@ -1,23 +1,9 @@
-import heartIcon from "../assets/heart-icon.png"
-import { useState, useEffect } from "react";
-import LimitMessage from "./DisplayError";
  
-const Book = ({title, author, imgUrl, description, handleClick, bookInArray, overMaxNum}) =>{
+const Book = ({title, author, imgUrl, description, handleClick, bookInArray}) =>{
 
-    const [errMessage, setErrMessage] = useState('');
-
-    useEffect(()=>{
-        console.log(overMaxNum, "book comp")
-        setErrMessage("Oops you have added too much!")
-    },[overMaxNum]);
-
-    return overMaxNum ? (
-        <LimitMessage errMessage={errMessage}/>
-    )
-    : 
-    (
+    return (
+   
         <div className={`book-item ${bookInArray? "disable-click" : ""}`}>
-            <img className="heart-icon" src={heartIcon} alt="heart icon" />
             <div className="img-container">
                 <img  src={imgUrl} alt={title} onClick={()=>{handleClick(imgUrl)}}/>
                 <div className="heart-icon"></div>

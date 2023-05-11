@@ -259,13 +259,27 @@ h2{
     text-align: center;
 }
 
+
+.collection-background{
+    background-color: #ffc544;
+}
+
 .loader{
     width: 300px;
     animation: loading 3s linear infinite;
 }
 
-.collection-background{
-    background-color: #ffc544;
+.collection-title{
+    display: flex;
+}
+
+
+.bookshelf-link{
+    text-align: center;
+}
+
+.bookshelf-link img{
+    width: 100px;
 }
 
 @keyframes  loading {
@@ -362,8 +376,19 @@ h2{
     margin-top: 5px;
 }
 
-.error-message span{
+.error-message span, .limit-message span{
     font-size: 50px;
     font-weight: 800;
     text-transform: uppercase;
+}
+
+.limit-message{
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.5;
+    width: 300px;
+    position: absolute;
+    top: 200px;    
+    left: 50%;
+    transform: translateX(-50%);
 }

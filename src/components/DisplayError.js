@@ -4,7 +4,7 @@ const DisplayError = () =>{
 
     return(
         <div className="error-container">
-            <img src={errorImg} about="error message"/>
+            <img src={errorImg} alt="error message"/>
                 <div className="error-message">
                     <span>Oops!</span>
                     <p>

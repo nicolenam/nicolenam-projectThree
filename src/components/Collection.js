@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import loader from '../assets/call-to-action.png';
 import Book from "./Book";
 import DisplayError from "./DisplayError";
+import LimitMessage from "./LimitMessage";
+import booksIcon from "../assets/booksIcon.png";
+
  
 const Collection = ({bookArray, setBookArray}) => {
 
@@ -20,6 +23,7 @@ const Collection = ({bookArray, setBookArray}) => {
     const [isLoading, setIsLoading] = useState(true);
     const [dataLength, setDataLength] = useState('');
     const [isError, setIsError] = useState(false);
+    const [overMaxNum, setOverMaxNum] = useState(false);
 
     // const [firstNum, setFirstNum] =  useState(''); 
 
@@ -117,10 +121,12 @@ const Collection = ({bookArray, setBookArray}) => {
 
     const handleClick = (imgUrl) =>{
         // if imgUrl does not exist in bookArray update setBookArray
+        setIsError(false); 
         if(!bookArray.includes(imgUrl)){
             if(bookArray.length < 14){
                 setBookArray(prev => [...prev, imgUrl]);
             }else if (bookArray.length === 14){
+                setOverMaxNum(true);
                 console.log('you cannot add more than 14');
             }
         }
@@ -131,40 +137,54 @@ const Collection = ({bookArray, setBookArray}) => {
         <div className="wrapper">
             {
                 isLoading? 
-                null : <h2>Bookiverse Quest of {userChoice}</h2>
-                
+                    <div className="loader-container">
+                        <img src={loader} className="loader" alt="spinning loader"/>
+                    </div> : 
+                    <>
+                        <div className="collection-title">
+                            <h2>Bookiverse Quest of {userChoice}</h2>   
+                            <Link to="/bookshelf">
+                                <div className="bookshelf-link">
+                                    <img src={booksIcon} alt="books icon" />
+                                    <p>Go to Bookshelf</p>
+                                </div>
+                            </Link>
+                        </div>
+                    </>
             }
             {
                 isError?
-                <DisplayError />
-                :
-                null
-
+                <DisplayError />:null
             }
+
+            {
+                overMaxNum?
+                <LimitMessage />:null
+            }
+
             <div className="collection-grid">
             {
-                isLoading?
-                    <div className="loader-container">
-                        <img src={loader} className="loader" alt="spinning loader"/>
-                    </div>
-                :
-                books.map((book, index)=>{
-                    const isBookInArray = bookArray.includes(images[index]);
-                    return(
-                        
-                        <Book 
-                            key={book.key} 
-                            title={book.title} 
-                            description={book.description? book.description.value || book.description : 'Description is currently unavailable'} 
-                            author={authors[index]} 
-                            imgUrl={images[index]}
-                            handleClick={handleClick}
-                            bookInArray={isBookInArray}
-                            />
+                overMaxNum && !isLoading ? 
+                null:
+                (
+                    books.map((book, index)=>{
 
-                    )
+                        const isBookInArray = bookArray.includes(images[index]);
+                        return(
+                            
+                            <Book 
+                                key={book.key} 
+                                title={book.title} 
+                                description={book.description? book.description.value || book.description : 'Description is currently unavailable'} 
+                                author={authors[index]} 
+                                imgUrl={images[index]}
+                                handleClick={handleClick}
+                                bookInArray={isBookInArray}
+                                />
 
-                })
+                        )
+                    })
+                )
             }
             </div>
         </div>
