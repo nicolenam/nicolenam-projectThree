@@ -1,13 +1,22 @@
 import heartIcon from "../assets/heart-icon.png"
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import DisplayError from "./DisplayError";
  
-const Book = ({title, author, imgUrl, description, handleClick, bookInArray}) =>{
+const Book = ({title, author, imgUrl, description, handleClick, bookInArray, overMaxNum}) =>{
+
+    const [errMessage, setErrMessage] = useState('');
 
     useEffect(()=>{
-        console.log(bookInArray, "book comp")
-    },[bookInArray]);
+        console.log(overMaxNum, "book comp")
+        setErrMessage("Oops you have added too much!")
+    },[overMaxNum]);
 
-    return(
+    return overMaxNum ? (
+        //maybe consider using a different component?...
+        <DisplayError errMessage={errMessage}/>
+    )
+    : 
+    (
         <div className={`book-item ${bookInArray? "disable-click" : ""}`}>
             <img className="heart-icon" src={heartIcon} alt="heart icon" />
             <div className="img-container">

@@ -25,7 +25,7 @@ const Collection = ({bookArray, setBookArray}) => {
 
     useEffect(()=>{
 
-        console.log(dataLength, 'new data length');
+        // console.log(dataLength, 'new data length');
 
             // const min = 0;
             // const max = dataLength -12;
@@ -121,7 +121,6 @@ const Collection = ({bookArray, setBookArray}) => {
         if(!bookArray.includes(imgUrl)){
             if(bookArray.length < 14){
                 setBookArray(prev => [...prev, imgUrl]);
-                console.log('added', isError)
             }else if (bookArray.length === 14){
                 console.log('you cannot add more than 14');
                 setIsError(true);
@@ -153,7 +152,6 @@ const Collection = ({bookArray, setBookArray}) => {
                 :
                 books.map((book, index)=>{
                     const isBookInArray = bookArray.includes(images[index]);
-                    console.log(isBookInArray);
                     return(
                         
                         <Book 
@@ -164,6 +162,7 @@ const Collection = ({bookArray, setBookArray}) => {
                             imgUrl={images[index]}
                             handleClick={handleClick}
                             bookInArray={isBookInArray}
+                            overMaxNum={isError}
                             />
 
                     )
