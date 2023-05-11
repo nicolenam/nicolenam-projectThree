@@ -320,3 +320,35 @@ h2{
 .heart-icon:hover{
     scale: 1.2;
 }
+
+/* ERROR STYLES */
+
+.error-container{
+    text-align: center;
+    position: relative;
+}
+
+.error-container img{
+    width: 600px;
+}
+
+.error-message{
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.5;
+    width: 300px;
+    position: absolute;
+    top: 170px;    
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.error-message p {
+    margin-top: 5px;
+}
+
+.error-message span{
+    font-size: 50px;
+    font-weight: 800;
+    text-transform: uppercase;
+}

@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
 import loader from '../assets/call-to-action.png';
 import Book from "./Book";
-import Bookshelf from './Bookshelf';
+import DisplayError from "./DisplayError";
  
-
 const Collection = ({bookArray, setBookArray}) => {
 
     // console.log("set book array ", bookArray);
@@ -21,15 +20,16 @@ const Collection = ({bookArray, setBookArray}) => {
     const [isLoading, setIsLoading] = useState(true);
     const [inBookArray, setInBookArray] = useState(false);
     const [dataLength, setDataLength] = useState('');
-    const [firstNum, setFirstNum] =  useState(''); 
+    const [isError, setIsError] = useState(false);
+    // const [firstNum, setFirstNum] =  useState(''); 
 
     useEffect(()=>{
 
         console.log(dataLength, 'new data length');
 
-            const min = 0;
-            const max = dataLength -12;
-            setFirstNum(Math.floor(Math.random() * (max - min + 1)) + min); 
+            // const min = 0;
+            // const max = dataLength -12;
+            // setFirstNum(Math.floor(Math.random() * (max - min + 1)) + min); 
 
     },[dataLength]);
 
@@ -44,6 +44,9 @@ const Collection = ({bookArray, setBookArray}) => {
     useEffect(() => {
 
         const getBookData = async () => {
+
+            setIsError(false); 
+
             try {
                 const response = await fetch(url);
                 const collectionData = await response.json();
@@ -51,9 +54,9 @@ const Collection = ({bookArray, setBookArray}) => {
                 setDataLength(collectionData.docs.length);
 
                 // filter and make array of books with property name cover_i and author_name
-                const booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined).slice(firstNum, firstNum + 12);
+                const booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined).slice(10,22);
 
-                console.log(firstNum, 'this is random first num')
+                // console.log(firstNum, 'this is random first num');
 
                 // console.log(booksWithAuthImg);
 
@@ -93,8 +96,9 @@ const Collection = ({bookArray, setBookArray}) => {
                     setImages(await Promise.all(bookImagesArray));
                     setIsLoading(false);
             }catch (err) {
-                console.log(err);
-                //Adventure does not work. error handling UI needed 
+                console.log("ERROR:", err);
+                //Adventure does not work. error handling UI needed
+                setIsError(true); 
                 setIsLoading(false);
             }
         };
@@ -136,6 +140,13 @@ const Collection = ({bookArray, setBookArray}) => {
                 isLoading? 
                 null : <h2>Bookiverse Quest of {userChoice}</h2>
                 
+            }
+            {
+                isError?
+                <DisplayError />
+                :
+                null
+
             }
             <div className="collection-grid">
             {
