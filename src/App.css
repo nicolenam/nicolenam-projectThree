@@ -147,6 +147,18 @@ h1{
     top: -20px;
 }
 
+.remove-book{
+    position: absolute;
+    width: 125px;
+    opacity: 0;
+    transition: opacity .3s ease-in;
+}
+
+.remove-book:hover{
+    cursor: pointer;
+    opacity: 1;
+}
+
 h2{
     font-size: 50px;
     font-weight: 800;

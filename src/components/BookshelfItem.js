@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"; 
 import addBtn from "../assets/plus-icon.png";
+import minusBtn from "../assets/minusBtn.png";
 
 const BookshelfItem = ({color, bookArray}) =>{
 
@@ -11,7 +12,10 @@ const BookshelfItem = ({color, bookArray}) =>{
                     console.log("book item:", book)
                     return(
                         book?
-                            <img className="bookshelf-book" src={book} alt="book url" />
+                            <>
+                                <img className="bookshelf-book" src={book} alt="book url" />
+                                <img className="remove-book" src={minusBtn} alt="book url" />
+                            </>
                         :
                         <Link to="/category">
                             <img className="bookshelf-img" src={addBtn} alt="plus button icon" />
