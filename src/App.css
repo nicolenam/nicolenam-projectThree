@@ -17,8 +17,13 @@ body{
 
 p{
     font-family: 'Montserrat', sans-serif; 
+    margin-top: 0;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+  }
 
 /* INTRO STYLES */
 
@@ -271,16 +276,24 @@ h2{
 
 .collection-title{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-
 
 .bookshelf-link{
     text-align: center;
 }
 
 .bookshelf-link img{
-    width: 100px;
+    width: 50px;
+    cursor: pointer;
 }
+
+.bookshelf-link p{
+    cursor: pointer;
+    font-weight: 700;
+}
+
 
 @keyframes  loading {
     0%{
@@ -357,7 +370,7 @@ h2{
     position: relative;
 }
 
-.error-container img{
+.error-container-img{
     width: 600px;
 }
 
@@ -383,7 +396,7 @@ h2{
 }
 
 .limit-message{
-    font-size: 25px;
+    font-size: 18px;
     font-weight: 700;
     line-height: 1.5;
     width: 300px;

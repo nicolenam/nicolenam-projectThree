@@ -4,7 +4,7 @@ import loader from '../assets/call-to-action.png';
 import Book from "./Book";
 import DisplayError from "./DisplayError";
 import LimitMessage from "./LimitMessage";
-import booksIcon from "../assets/booksIcon.png";
+import BookIcon from "../assets/book-icon.png";
 
  
 const Collection = ({bookArray, setBookArray}) => {
@@ -145,8 +145,8 @@ const Collection = ({bookArray, setBookArray}) => {
                             <h2>Bookiverse Quest of {userChoice}</h2>   
                             <Link to="/bookshelf">
                                 <div className="bookshelf-link">
-                                    <img src={booksIcon} alt="books icon" />
-                                    <p>Go to Bookshelf</p>
+                                    <img src={BookIcon} alt="books icon" />
+                                    <p>View Bookshelf</p>
                                 </div>
                             </Link>
                         </div>

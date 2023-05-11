@@ -1,9 +1,11 @@
-import errorImg from '../assets/error-image.png';
+import errorImg from "../assets/error-image.png";
+import { Link } from "react-router-dom";
+import BookIcon from "../assets/book-icon.png";
 
 const LimitMessage = () =>{
     return(
         <div className="error-container">
-        <img src={errorImg} alt="error message"/>
+        <img src={errorImg} className="error-container-img" alt="error message"/>
             <div className="limit-message">
                 <span>Oops!</span>
                 <p>
@@ -12,7 +14,13 @@ const LimitMessage = () =>{
                 <p>
                 Remove books before you can add more.
                 </p>
-                <button>Go to Bookshelf</button>
+
+                <Link to="/bookshelf">
+                    <div className="bookshelf-link">
+                        <img src={BookIcon} alt="books icon" />
+                        <p>View Bookshelf</p>
+                    </div>
+                </Link>
             </div>
     </div>
     )
