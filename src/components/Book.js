@@ -1,6 +1,6 @@
 import heartIcon from "../assets/heart-icon.png"
 import { useState, useEffect } from "react";
-import DisplayError from "./DisplayError";
+import LimitMessage from "./DisplayError";
  
 const Book = ({title, author, imgUrl, description, handleClick, bookInArray, overMaxNum}) =>{
 
@@ -12,8 +12,7 @@ const Book = ({title, author, imgUrl, description, handleClick, bookInArray, ove
     },[overMaxNum]);
 
     return overMaxNum ? (
-        //maybe consider using a different component?...
-        <DisplayError errMessage={errMessage}/>
+        <LimitMessage errMessage={errMessage}/>
     )
     : 
     (

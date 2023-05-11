@@ -116,14 +116,12 @@ const Collection = ({bookArray, setBookArray}) => {
     },[]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleClick = (imgUrl) =>{
-        setIsError(false);
         // if imgUrl does not exist in bookArray update setBookArray
         if(!bookArray.includes(imgUrl)){
             if(bookArray.length < 14){
                 setBookArray(prev => [...prev, imgUrl]);
             }else if (bookArray.length === 14){
                 console.log('you cannot add more than 14');
-                setIsError(true);
             }
         }
     }
@@ -162,7 +160,6 @@ const Collection = ({bookArray, setBookArray}) => {
                             imgUrl={images[index]}
                             handleClick={handleClick}
                             bookInArray={isBookInArray}
-                            overMaxNum={isError}
                             />
 
                     )
