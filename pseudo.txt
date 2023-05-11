@@ -39,5 +39,7 @@ Components
 
     Book: A component representing an individual book item with its cover image and details.
 
+    Menu: A component for navigation purposes.
+
     stretch goals: branded cover not found images, error handling for cover images, store bookshelf in firebase,
     paginate the Collections

@@ -1,21 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
-import Book from "./Book";
 import loader from '../assets/call-to-action.png';
+import Book from "./Book";
+import DisplayError from "./DisplayError";
  
+const Collection = ({bookArray, setBookArray}) => {
 
-const Collection = () => {
+    // console.log("set book array ", bookArray);
 
     const path = useLocation();
     const category = new URLSearchParams(path.search);
     const userChoice = category.get('category');
 
-    console.log(userChoice, 'omg!!!!! it is here 🌈');
+    // console.log(userChoice, 'omg!!!!! it is here 🌈');
 
     const [books, setBooks] = useState([]);
     const [authors, setAuthors] = useState([]);
     const [images, setImages] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [inBookArray, setInBookArray] = useState(false);
+    const [dataLength, setDataLength] = useState('');
+    const [isError, setIsError] = useState(false);
+    // const [firstNum, setFirstNum] =  useState(''); 
+
+    useEffect(()=>{
+
+        console.log(dataLength, 'new data length');
+
+            // const min = 0;
+            // const max = dataLength -12;
+            // setFirstNum(Math.floor(Math.random() * (max - min + 1)) + min); 
+
+    },[dataLength]);
 
     const url = new URL("http://openlibrary.org/search.json");
 
@@ -28,14 +44,19 @@ const Collection = () => {
     useEffect(() => {
 
         const getBookData = async () => {
+
+            setIsError(false); 
+
             try {
                 const response = await fetch(url);
                 const collectionData = await response.json();
 
-                // console.log(collectionData.docs)
+                setDataLength(collectionData.docs.length);
 
                 // filter and make array of books with property name cover_i and author_name
                 const booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined).slice(10,22);
+
+                // console.log(firstNum, 'this is random first num');
 
                 // console.log(booksWithAuthImg);
 
@@ -75,35 +96,84 @@ const Collection = () => {
                     setImages(await Promise.all(bookImagesArray));
                     setIsLoading(false);
             }catch (err) {
-                console.log(err);
+                console.log("ERROR:", err);
+                //Adventure does not work. error handling UI needed
+                setIsError(true); 
+                setIsLoading(false);
             }
         };
         getBookData();
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    return (
-        <div className="collection-grid">
-        {
-            isLoading?
-                <div className="loader-container">
-                    <img src={loader} className="loader" alt="spinning loader"/>
-                </div>
-            :
-            books.map((book, index)=>{
+    useEffect(()=>{
 
-                return(
-                    
-                    <Book 
-                        key={index} 
-                        title={book.title} 
-                        description={book.description? book.description.value || book.description : 'Description is currently unavailable'} 
-                        author={authors[index]} 
-                        imgUrl={images[index]}/>
-                )
+        document.body.classList.add('collection-background');
 
-            })
+        return() => {
+        document.body.classList.remove('collection-background');
         }
 
+    },[]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    const handleClick = (imgUrl) =>{
+        // if imgUrl exists in bookArray do not update setBookArray
+        if(!bookArray.includes(imgUrl)){
+            setInBookArray(false);
+            setBookArray(prev => [...prev, imgUrl]);
+            console.log(inBookArray);
+        }else{
+            setInBookArray(true);
+            // find the matching book and gray it out. make it unclickable.
+        }
+    }
+
+    useEffect(()=>{
+        inBookArray ? 
+        console.log("oops you cannot add twice", inBookArray)
+        :
+        console.log(inBookArray);
+    },[inBookArray]);
+    
+    return (
+        <div className="wrapper">
+            {
+                isLoading? 
+                null : <h2>Bookiverse Quest of {userChoice}</h2>
+                
+            }
+            {
+                isError?
+                <DisplayError />
+                :
+                null
+
+            }
+            <div className="collection-grid">
+            {
+                isLoading?
+                    <div className="loader-container">
+                        <img src={loader} className="loader" alt="spinning loader"/>
+                        <p>Loading...</p>
+                    </div>
+                :
+                books.map((book, index)=>{
+
+                    return(
+                        
+                        <Book 
+                            key={book.key} 
+                            title={book.title} 
+                            description={book.description? book.description.value || book.description : 'Description is currently unavailable'} 
+                            author={authors[index]} 
+                            imgUrl={images[index]}
+                            handleClick={handleClick}
+                            />
+
+                    )
+
+                })
+            }
+            </div>
         </div>
     );
 }
