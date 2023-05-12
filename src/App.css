@@ -419,6 +419,70 @@ h2{
     transform: translateX(-50%);
 }
 
+/* NAVIGATION STYLES */
+
+.nav{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.navImg-container{
+    z-index: 100;
+}
+
+nav img{
+    width: 70px;
+    cursor: pointer;
+}
+
+.nav-items{
+    display: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.isOpen{
+    list-style: none;
+    display: block;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+
+.isOpen li {
+    padding-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.overlay{
+    background-color: #2a4674;
+    opacity: 1;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    animation: fadeIn .3s ease-in;
+}
+
+/* PAGE NOT FOUND STYLES */
+
+.pageNotFound{
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+
+
+
+/* ---------------------------- */
+
+
 /* MEDIA QUERIES */
 
 @media (max-width: 1300px) {

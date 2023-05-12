@@ -1,7 +1,7 @@
 const PageNotFound = () =>{
     return(
         <div>
-            <p>404 page not found</p>
+            <p className="pageNotFound">Please Choose A Category to display :D</p>
         </div>
     )
 }

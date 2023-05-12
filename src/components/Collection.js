@@ -5,6 +5,8 @@ import Book from "./Book";
 import DisplayError from "./DisplayError";
 import LimitMessage from "./LimitMessage";
 import BookIcon from "../assets/book-icon.png";
+import PageNotFound from "./PageNotFound";
+import Navigation from "./Navigation";
 
  
 const Collection = ({bookArray, setBookArray}) => {
@@ -133,60 +135,64 @@ const Collection = ({bookArray, setBookArray}) => {
 
     
     return (
-        <div className="wrapper">
+        <>
+            <Navigation />
+            <div className="wrapper">
             {
+    
                 isLoading? 
-                    <div className="loader-container">
-                        <img src={loader} className="loader" alt="spinning loader"/>
-                    </div> : 
-                    <>
-                        <div className="collection-title">
-                            <h2 className="collection-heading">Bookiverse Quest of {userChoice}</h2>   
-                            <Link to="/bookshelf">
-                                <div className="bookshelf-link">
-                                    <img src={BookIcon} alt="books icon" />
-                                    <p>View Bookshelf</p>
-                                </div>
-                            </Link>
-                        </div>
-                    </>
-            }
-            {
-                isError?
-                <DisplayError />:null
-            }
+                        <div className="loader-container">
+                            <img src={loader} className="loader" alt="spinning loader"/>
+                        </div> : 
+                        <>
+                            <div className="collection-title">
+                                <h2 className="collection-heading">Bookiverse Quest of {userChoice}</h2>   
+                            </div>
+                        </>
+                }
 
-            {
-                overMaxNum?
-                <LimitMessage />:null
-            }
+                {
+                    isError?
+                    <DisplayError />:null
+                }
 
-            <div className="collection-grid">
-            {
-                overMaxNum && !isLoading ? 
-                null:
-                (
-                    books.map((book, index)=>{
+                {
+                    overMaxNum?
+                    <LimitMessage />:null
+                }
 
-                        const isBookInArray = bookArray.includes(images[index]);
-                        return(
-                            
-                            <Book 
-                                key={book.key} 
-                                title={book.title} 
-                                description={book.description? book.description.value || book.description : 'Description is currently unavailable'} 
-                                author={authors[index]} 
-                                imgUrl={images[index]}
-                                handleClick={handleClick}
-                                bookInArray={isBookInArray}
-                                />
+                {/* {
+                    !userChoice ?
+                    <PageNotFound /> : null
+                } */}
 
-                        )
-                    })
-                )
-            }
+                <div className="collection-grid">
+                {
+                    overMaxNum && !isLoading ? 
+                    null:
+                    (
+                        books.map((book, index)=>{
+
+                            const isBookInArray = bookArray.includes(images[index]);
+                            return(
+                                
+                                <Book 
+                                    key={book.key} 
+                                    title={book.title} 
+                                    description={book.description? book.description.value || book.description : 'Description is currently unavailable'} 
+                                    author={authors[index]} 
+                                    imgUrl={images[index]}
+                                    handleClick={handleClick}
+                                    bookInArray={isBookInArray}
+                                    />
+
+                            )
+                        })
+                    )
+                }
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

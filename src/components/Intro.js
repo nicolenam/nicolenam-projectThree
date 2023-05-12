@@ -16,17 +16,17 @@ const Intro = () =>{
     return(
 
         <div className="intro wrapper">
-        <div className="intro-content">
-            <h1>Welcome to Bookiverse!</h1>
-            <p>Embark on a bookish adventure in Bookiverse! Create your own personalized bookshelf and immerse yourself in a world of stories and imagination!</p>
-        </div>
-        <div className="intro-imgContainer">
-            <img className="intro-img" src={introImg} alt="colorful shapes"/>
-            <Link to="/bookshelf">
-                <img className="intro-triangle" src={callToAction} alt="triangle button" />
-            </Link>
-        </div>
-    </div>       
+            <div className="intro-content">
+                <h1>Welcome to Bookiverse!</h1>
+                <p>Embark on a bookish adventure in Bookiverse! Create your own personalized bookshelf and immerse yourself in a world of stories and imagination!</p>
+            </div>
+            <div className="intro-imgContainer">
+                <img className="intro-img" src={introImg} alt="colorful shapes"/>
+                <Link to="/bookshelf">
+                    <img className="intro-triangle" src={callToAction} alt="triangle button" />
+                </Link>
+            </div>
+        </div>       
 
     
     )
