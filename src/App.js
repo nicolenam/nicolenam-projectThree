@@ -17,7 +17,7 @@ function App() {
           <Routes>
           {/* might not need a path for intro */}
             <Route path="/" element={<Intro />} />
-            <Route path="/bookshelf" element={<Bookshelf bookArray={bookArray} />} />
+            <Route path="/bookshelf" element={<Bookshelf bookArray={bookArray} setBookArray={setBookArray} />} />
             <Route path="/category" element={<Category />} /> 
             <Route path="/collection" element={<Collection bookArray={bookArray} setBookArray={setBookArray}/>} />
             <Route path="*" element={<PageNotFound />} />
