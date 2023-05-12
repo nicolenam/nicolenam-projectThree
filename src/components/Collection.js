@@ -141,7 +141,7 @@ const Collection = ({bookArray, setBookArray}) => {
                     </div> : 
                     <>
                         <div className="collection-title">
-                            <h2>Bookiverse Quest of {userChoice}</h2>   
+                            <h2 className="collection-heading">Bookiverse Quest of {userChoice}</h2>   
                             <Link to="/bookshelf">
                                 <div className="bookshelf-link">
                                     <img src={BookIcon} alt="books icon" />
