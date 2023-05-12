@@ -418,3 +418,43 @@ h2{
     left: 50%;
     transform: translateX(-50%);
 }
+
+/* MEDIA QUERIES */
+
+@media (max-width:1300px) {
+
+    /* INTRO STYLES */
+
+    h1{
+        font-size: 40px;
+        min-width: 100px;
+        font-weight: 700;
+    }
+
+    .intro-content p {
+        color: #fff;
+        font-weight: 300;
+        font-size: 24px;
+        max-width: 300px;
+    }
+
+    .intro-img {
+        width: 400px;
+    }
+
+    .intro-triangle {
+        position: absolute;
+        top: 150px;
+        left: 90px;
+        width: 200px;
+        cursor: pointer;
+        animation: triangle .8s infinite alternate;
+      }
+    
+}
+
+@media (max-width: 1020px) {
+
+    h1 {
+      }
+}
