@@ -577,6 +577,38 @@ h2{
     .book-description{
         display: none;
     }
+
+    /* ERROR STYLES */
+
+    .error-container-img {
+        width: 100%;
+    }
+
+    .error-message span, .limit-message span {
+        font-size: 40px;
+    }
+
+    .error-message {
+        width: 70%;
+    }
+
+    .error-paragraph{
+        display: none;
+    }
+
+    /* LIMIT MESSAGE */
+
+    .limit-message {
+        font-size: 14px;
+        top: 140px;
+        width: 200px;
+    }
+
+    .bookshelf-link img {
+        width: 30px;
+        cursor: pointer;
+    }
+
 }
 
 @media (max-width: 500px) {
@@ -623,4 +655,32 @@ h2{
         font-size: 30px;
         text-align: center;
     }
+
+    /* ERROR STYLES */
+
+    .error-message p {
+        font-size: 20px;
+    }
+
+    .error-message {
+        top: 110px;
+    }
+
+    .error-message {
+        width: 60%;
+    }
+
+    .error-message span, .limit-message span {
+        font-size: 30px;
+        font-weight: 800;
+    }
+
+    /* LIMIT MESSAGE */
+
+    .limit-message {
+        /* font-size: 12px; */
+        top: 100px;
+        width: 200px;
+    }
+
 }
