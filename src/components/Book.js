@@ -11,7 +11,7 @@ const Book = ({title, author, imgUrl, description, handleClick, bookInArray}) =>
             <div>
                 <h3>{title}</h3>
                 <p>By {author}</p>
-                <p>{`${description.slice(0,200)}...`}</p>
+                <p className="book-description">{`${description.slice(0,100)}...`}</p>
             </div>
         </div>
     )
