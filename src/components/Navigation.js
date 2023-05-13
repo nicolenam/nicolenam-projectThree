@@ -1,4 +1,5 @@
 import BookIcon from "../assets/book-icon.png";
+import ClosedBook from "../assets/closed-book.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -15,7 +16,8 @@ const Navigation = () =>{
             <div className={`${isOpen ? `overlay` : ``}`}></div>
             <nav className="nav wrapper">
                 <div className="navImg-container" onClick={handleClick}>
-                    <img src={BookIcon} alt="books icon" />
+                    <img className={`closed-book ${isOpen ? `hide` : ``}`} src={ClosedBook} alt="books icon" />
+                    <img className={`${isOpen ? `` : `hide`}`} src={BookIcon} alt="books icon" />
                 </div>
                 <ul className={`nav-items ${isOpen ? `isOpen` : ``}`} onClick={handleClick}>
                     <Link to="/">

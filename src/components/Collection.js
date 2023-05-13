@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import loader from '../assets/call-to-action.png';
 import Book from "./Book";
 import DisplayError from "./DisplayError";
 import LimitMessage from "./LimitMessage";
-import BookIcon from "../assets/book-icon.png";
-import PageNotFound from "./PageNotFound";
+// import PageNotFound from "./PageNotFound";
 import Navigation from "./Navigation";
 
  

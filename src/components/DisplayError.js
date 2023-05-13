@@ -1,4 +1,7 @@
-import errorImg from '../assets/error-image.png';
+import errorImg from "../assets/error-image.png";
+import { Link } from "react-router-dom";
+import BookIcon from "../assets/book-icon.png";
+
 
 const DisplayError = () =>{
 
@@ -7,12 +10,18 @@ const DisplayError = () =>{
             <img src={errorImg} className="error-container-img" alt="error message"/>
                 <div className="error-message">
                     <span>Oops!</span>
-                    <p>
+                    <p className="error-paragraph">
                         This collection is off on an exciting adventure! 
                     </p>
-                    <p className="error-paragraph">
-                        Stay tuned, and get ready to embark on an incredible reading journey! 🚀
+                    <p>
+                        Choose a different category! 🚀
                     </p>
+                    <Link to="/category">
+                    <div className="bookshelf-link">
+                        <img src={BookIcon} alt="books icon" />
+                        <p>View Category</p>
+                    </div>
+                </Link>
                 </div>
         </div>
     )

@@ -363,7 +363,7 @@ h2{
 
 .disable-click{
     pointer-events: none;
-    animation: fadeOut .3s ease-in;
+    animation: fadeOut .2s ease-in;
     opacity: .5;
 }
 
@@ -379,23 +379,24 @@ h2{
 /* ERROR STYLES */
 
 .error-container{
+    display: flex;
+    align-items: center;
     text-align: center;
-    position: relative;
 }
 
 .error-container-img{
-    width: 600px;
+   position: relative;
+   max-width: 100%;
+   height: auto;
+   margin: 0 auto;
 }
 
 .error-message{
-    font-size: 25px;
-    font-weight: 700;
-    line-height: 1.5;
-    width: 300px;
     position: absolute;
-    top: 170px;    
+    padding: 20px;
     left: 50%;
     transform: translateX(-50%);
+    max-width: 300px;
 }
 
 .error-message p {
@@ -403,21 +404,14 @@ h2{
 }
 
 .error-message span, .limit-message span{
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 800;
     text-transform: uppercase;
 }
 
-.limit-message{
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.5;
-    width: 300px;
-    position: absolute;
-    top: 200px;    
-    left: 50%;
-    transform: translateX(-50%);
-}
+
+/* LIMIT MESSAGE STYLES */
+
 
 /* NAVIGATION STYLES */
 
@@ -450,12 +444,12 @@ nav img{
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
+    min-width: 30%;
 }
 
 .isOpen li {
     padding-top: 20px;
     text-align: center;
-    width: 100%;
 }
 
 .overlay{
@@ -467,6 +461,15 @@ nav img{
     top: 0;
     z-index: 10;
     animation: fadeIn .3s ease-in;
+}
+
+.closed-book{
+    width: 50px;
+    height: 50px;
+}
+
+.hide{
+    display: none;
 }
 
 /* PAGE NOT FOUND STYLES */
@@ -553,7 +556,7 @@ nav img{
     h1 {
         min-width: 100px;
         font-weight: 700;
-        margin: 30px 0;
+        margin-top: 100px;
     }
 
     .intro{
@@ -644,20 +647,12 @@ nav img{
 
     /* ERROR STYLES */
 
-    .error-container-img {
-        width: 100%;
+    .error-message{
+        margin-top: 20px;
     }
 
     .error-message span, .limit-message span {
-        font-size: 40px;
-    }
-
-    .error-message {
-        width: 70%;
-    }
-
-    .error-paragraph{
-        display: none;
+        font-size: 30px;
     }
 
     /* LIMIT MESSAGE */
@@ -722,29 +717,16 @@ nav img{
 
     /* ERROR STYLES */
 
-    .error-message p {
-        font-size: 20px;
-    }
-
-    .error-message {
-        top: 110px;
-    }
-
-    .error-message {
-        width: 60%;
-    }
-
-    .error-message span, .limit-message span {
-        font-size: 30px;
-        font-weight: 800;
+    .error-paragraph{
+        display: none;
     }
 
     /* LIMIT MESSAGE */
 
-    .limit-message {
-        /* font-size: 12px; */
-        top: 100px;
-        width: 200px;
+    .limit-message{
+        display: none;
     }
+
+
 
 }
