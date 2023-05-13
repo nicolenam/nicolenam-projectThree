@@ -34,7 +34,7 @@ const Bookshelf = ({bookArray, setBookArray}) =>{
                                 <>
                                     {/* created single array for each one that is passed */}
                                     <BookshelfItem key="1" color="blue" bookArray={[bookArray[0]]} index={0} handleRemoveBook={handleRemoveBook} />
-                                    <BookshelfItem key="2" color="blue" bookArray={[bookArray[1]]}/>
+                                    <BookshelfItem key="2" color="blue" bookArray={[bookArray[1]]} />
                                     <BookshelfItem key="3" color="blue" bookArray={[bookArray[2]]}/>
                                     <BookshelfItem key="4" color="blue" bookArray={[bookArray[3]]}/>
                                     <BookshelfItem key="5" color="orange" bookArray={[bookArray[4]]}/>

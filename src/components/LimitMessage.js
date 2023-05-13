@@ -6,9 +6,9 @@ const LimitMessage = () =>{
     return(
         <div className="error-container">
         <img src={errorImg} className="error-container-img" alt="error message"/>
-            <div className="limit-message">
+            <div className="error-message">
                 <span>Oops!</span>
-                <p>
+                <p className="limit-message">
                 You have reached the maximum number of books in your collection!
                 </p>
                 <p>
