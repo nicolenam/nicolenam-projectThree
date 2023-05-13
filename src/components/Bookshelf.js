@@ -5,9 +5,12 @@ import Navigation from "./Navigation";
 
 const Bookshelf = ({bookArray, setBookArray}) =>{
 
-    // console.log('book array:', bookArray);
+    console.log('book array:', bookArray);
     const handleRemoveBook = (index) =>{
         console.log("clicked", index);
+        const updatedArray = bookArray.filter((book, i) => i !== index);
+        console.log("updated array:", updatedArray);
+        setBookArray(updatedArray);
     }
 
     useEffect(()=>{
