@@ -91,7 +91,6 @@ h1{
 
 .bookshelf{
     display: flex;
-    align-items: center;
     height: 100vh;
     
     animation: fadeIn 1s ease-in;
@@ -182,7 +181,7 @@ h2{
 
 .category-container{
     display: flex;
-    margin-top: 100px;
+    margin-top: 70px;
 }
 
 .category-background{
