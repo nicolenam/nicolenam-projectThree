@@ -12,6 +12,7 @@ const Collection = ({bookArray, setBookArray}) => {
 
     // console.log("set book array ", bookArray);
 
+    // This gets the search path ie) 'collection?category=Fairy Tales'
     const path = useLocation();
     const category = new URLSearchParams(path.search);
     const userChoice = category.get('category');
@@ -65,7 +66,7 @@ const Collection = ({bookArray, setBookArray}) => {
 
                 // console.log(booksWithAuthImg);
 
-                // use map to return an array of author's names
+                // use map to return an array of author's names: decided to go with the first one. 
                 const authorNames = booksWithAuthImg.map((bookObj)=> bookObj.author_name[0]);
                 setAuthors(authorNames);
 
