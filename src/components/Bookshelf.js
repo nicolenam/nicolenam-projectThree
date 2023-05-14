@@ -38,7 +38,7 @@ const Bookshelf = ({bookArray, setBookArray}) =>{
       }
 
       bookShelfItems.push(
-      <BookshelfItem key={i} color={color} bookArray={[bookArray[i]]} index={i} handleRemoveBook={handleRemoveBook} />
+      <BookshelfItem key={i} color={color} bookUrl={bookArray[i]} index={i} handleRemoveBook={handleRemoveBook} />
       )
     }
 
