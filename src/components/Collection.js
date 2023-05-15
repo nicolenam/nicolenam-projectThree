@@ -157,7 +157,7 @@ const Collection = ({bookArray, setBookArray}) => {
                     <PageNotFound /> : null
                 } */}
 
-                <div className="collection-grid">
+                <section className="collection-grid">
                 {
                     overMaxNum && !isLoading ? 
                     null:
@@ -181,7 +181,7 @@ const Collection = ({bookArray, setBookArray}) => {
                         })
                     )
                 }
-                </div>
+                </section>
             </div>
         </>
     );

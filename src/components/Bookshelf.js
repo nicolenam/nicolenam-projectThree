@@ -1,22 +1,17 @@
 import { useEffect } from "react";
 import BookshelfItem from "./BookshelfItem";
 import BookshelfIcon from "../assets/bookshelf-icon.png";
-// import Navigation from "./Navigation";
 
 const Bookshelf = ({bookArray, setBookArray}) =>{
 
-    console.log('book array:', bookArray);
     const handleRemoveBook = (index) =>{
-      console.log("clicked", index);
       const updatedArray = bookArray.filter((book, i) => i !== index);
-      console.log("updated array:", updatedArray);
       setBookArray(updatedArray);
     }
 
     useEffect(()=>{
 
         document.body.classList.add('bookshelf-background');
-        //clean up function to remove class when the component is unmounted.
         return() =>{
             document.body.classList.remove('bookshelf-background');
         }
@@ -42,13 +37,9 @@ const Bookshelf = ({bookArray, setBookArray}) =>{
       )
     }
 
-    console.log("bookshelfItems",bookShelfItems);
-
     return(
         <>
-        {/* not sure if bookshelf needs this...nav. */}
-            {/* <Navigation /> */}
-            <div className="bookshelf wrapper">
+            <section className="bookshelf wrapper">
                 <div>
                     <h2>Bookiverse Bookshelf</h2>
                     <div className="bookshelf-grid">
@@ -60,7 +51,7 @@ const Bookshelf = ({bookArray, setBookArray}) =>{
                         }
                     </div>
                 </div>
-            </div>
+            </section>
         </>
     )
 }
