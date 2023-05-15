@@ -4,43 +4,39 @@ import loader from '../assets/call-to-action.png';
 import Book from "./Book";
 import DisplayError from "./DisplayError";
 import LimitMessage from "./LimitMessage";
-// import PageNotFound from "./PageNotFound";
 import Navigation from "./Navigation";
 
  
 const Collection = ({bookArray, setBookArray}) => {
 
-    // console.log("set book array ", bookArray);
-
-    // This gets the search path ie) 'collection?category=Fairy Tales'
+    // This gets the search path from the URL ie) 'collection?category=Fairy Tales' , which is assigned to userChoice and this query value is used to make the initial API call
     const path = useLocation();
     const category = new URLSearchParams(path.search);
     const userChoice = category.get('category');
-
-    // console.log(userChoice, 'omg!!!!! it is here 🌈');
 
     const [books, setBooks] = useState([]);
     const [authors, setAuthors] = useState([]);
     const [images, setImages] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [dataLength, setDataLength] = useState('');
     const [isError, setIsError] = useState(false);
     const [overMaxNum, setOverMaxNum] = useState(false);
+    // const [dataLength, setDataLength] = useState('');
 
     // const [firstNum, setFirstNum] =  useState(''); 
 
-    useEffect(()=>{
+    // useEffect(()=>{
 
-        // console.log(dataLength, 'new data length');
+    //     console.log(dataLength, 'new data length');
 
-            // const min = 0;
-            // const max = dataLength -12;
-            // setFirstNum(Math.floor(Math.random() * (max - min + 1)) + min); 
+    //         const min = 0;
+    //         const max = dataLength -12;
+    //         setFirstNum(Math.floor(Math.random() * (max - min + 1)) + min); 
 
-    },[dataLength]);
+    // },[dataLength]);
 
     const url = new URL("http://openlibrary.org/search.json");
 
+    // Subject and audience is hardcoded because it's a virtual bookshelf app for children.
     url.search = new URLSearchParams({
         subject: "picture books",
         q: userChoice,
@@ -54,51 +50,45 @@ const Collection = ({bookArray, setBookArray}) => {
             setIsError(false); 
 
             try {
+                //Initial call is made here:
                 const response = await fetch(url);
                 const collectionData = await response.json();
 
-                setDataLength(collectionData.docs.length);
+                // setDataLength(collectionData.docs.length);
 
-                // filter and make array of books with property name cover_i and author_name
+                // Filter collectionData return an array of books with property name cover_i and author_name.
                 const booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined).slice(10,22);
 
-                // console.log(firstNum, 'this is random first num');
-
-                // console.log(booksWithAuthImg);
-
-                // use map to return an array of author's names: decided to go with the first one. 
+                // Map through collectionData to return an array of author's names: decided to go with the first one. 
                 const authorNames = booksWithAuthImg.map((bookObj)=> bookObj.author_name[0]);
                 setAuthors(authorNames);
 
-                // keys are needed to get details of each book
+                // Map through collectionData and make an array of book keys which is used to fetch details of each book.
                 const bookKeys = booksWithAuthImg.map((bookObj) => bookObj.key);
 
-                // console.log('book keys array', bookKeys);
-            
                     const bookDetailsArray = bookKeys.map( async key =>{
 
                         const bookUrl = `http://openlibrary.org${key}.json`;
                         const bookResponse = await fetch(bookUrl);
                         const bookData = await bookResponse.json();
-                        // console.log('book details object', bookData);
                         return bookData;
-                        });
 
-                        // booksDetailsArray also returns a promise, and Promise.all() makes sure that I get all the responses back before the books state gets updated. 
-                        
-                        const imgKeys = booksWithAuthImg.map((bookObj)=> bookObj.cover_i);
-                        // console.log('image keys array', imgKeys);
-                        
-                        const bookImagesArray = imgKeys.map( async (key) =>{
-                            
-                            const imgUrl = `http://covers.openlibrary.org/b/ID/${key}-L.jpg`;
-                            
-                            const imgResponse = await fetch(imgUrl);
-                            // console.log('img file data', imgResponse.url);
-                            return imgResponse.url;
-                        })
+                    });
+
+                // Map through collectionData and make an array of different set of book keys which is used to fetch img urls of each book.
+                const imgKeys = booksWithAuthImg.map((bookObj)=> bookObj.cover_i);
+                
+                    const bookImagesArray = imgKeys.map( async (key) =>{
+                    
+                        const imgUrl = `http://covers.openlibrary.org/b/ID/${key}-L.jpg`;
+                        const imgResponse = await fetch(imgUrl);
+                        return imgResponse.url;
+
+                    });
                         
                     setIsLoading(false);
+
+                    // booksDetailsArray, bookImagesArray returns promises, and Promise.all() makes sure that all the responses get back before the books state gets updated. 
                     setBooks(await Promise.all(bookDetailsArray));
                     setImages(await Promise.all(bookImagesArray));
             }catch (err) {
@@ -110,6 +100,7 @@ const Collection = ({bookArray, setBookArray}) => {
         getBookData();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+    // This useEffect function is used to add and remove a class for background color when component mounts and unmounts.
     useEffect(()=>{
 
         document.body.classList.add('collection-background');
@@ -120,19 +111,19 @@ const Collection = ({bookArray, setBookArray}) => {
 
     },[]); // eslint-disable-line react-hooks/exhaustive-deps
 
+    // Handles adding books to the bookArray:
     const handleClick = (imgUrl) =>{
-        // if imgUrl does not exist in bookArray update setBookArray
         setIsError(false); 
+        //If imgUrl does not exist in bookArray update setBookArray by adding it.
         if(!bookArray.includes(imgUrl)){
             if(bookArray.length < 14){
                 setBookArray(prev => [...prev, imgUrl]);
             }else if (bookArray.length === 14){
+                //Used to render Limit Message, 
                 setOverMaxNum(true);
-                console.log('you cannot add more than 14');
             }
         }
     }
-
     
     return (
         <>
