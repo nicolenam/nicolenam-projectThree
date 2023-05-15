@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import BookshelfItem from "./BookshelfItem";
 import BookshelfIcon from "../assets/bookshelf-icon.png";
-import Navigation from "./Navigation";
+// import Navigation from "./Navigation";
 
 const Bookshelf = ({bookArray, setBookArray}) =>{
 
@@ -46,7 +46,8 @@ const Bookshelf = ({bookArray, setBookArray}) =>{
 
     return(
         <>
-            <Navigation />
+        {/* not sure if bookshelf needs this...nav. */}
+            {/* <Navigation /> */}
             <div className="bookshelf wrapper">
                 <div>
                     <h2>Bookiverse Bookshelf</h2>
