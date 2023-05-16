@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
 import categoryIcons from "../assets/bookegory.png";
 import CategoryItems from "./CategoryItems";
 import Navigation from "./Navigation";
@@ -7,19 +6,20 @@ import Navigation from "./Navigation";
 
 const Category = () =>{
 
-    const [userChoice, setUserChoice] = useState('');
-    const navigate = useNavigate();
+    // const [userChoice, setUserChoice] = useState('');
+    // const navigate = useNavigate();
 
-    const handleClick = (category) =>{
-        setUserChoice(category);
-    }
+    // const handleClick = (category) =>{
+    //     console.log('User chose:', category);
+    //     setUserChoice(category);
+    // }
     
-    useEffect(()=>{
-        if(userChoice){
-            navigate(`/collection?category=${userChoice}`);
-        }
+    // useEffect(()=>{
+    //     if(userChoice){
+    //         navigate(`/collection?category=${userChoice}`);
+    //     }
 
-    },[userChoice, navigate])
+    // },[userChoice, navigate])
 
     useEffect(()=>{
 
@@ -34,7 +34,7 @@ const Category = () =>{
 
         <>
         <Navigation />
-            <section className="category wrapper">
+            <div className="category wrapper">
                 <div className="category-container">
                     <div className="category-content">
                         <h2>Book-egories</h2>
@@ -44,10 +44,10 @@ const Category = () =>{
                         <img className="category-img" src={categoryIcons} alt="category icons"/>
                     </div>
                     <ul className="category-list">
-                        <CategoryItems handleClick={handleClick} />
+                        <CategoryItems/>
                     </ul> 
                 </div>
-            </section>
+            </div>
 
         </>
     )

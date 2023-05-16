@@ -5,7 +5,6 @@ import Intro from "./components/Intro";
 import Bookshelf from "./components/Bookshelf";
 import Category from "./components/Category";
 import Collection from "./components/Collection";
-// import PageNotFound from "./components/PageNotFound"; :stretch goal to style it
 
 function App() {
   
@@ -15,12 +14,10 @@ function App() {
       <div>
       {/* Routing Config */}
           <Routes>
-          {/* might not need a path for intro */}
             <Route path="/" element={<Intro />} />
             <Route path="/bookshelf" element={<Bookshelf bookArray={bookArray} setBookArray={setBookArray} />} />
             <Route path="/category" element={<Category />} /> 
-            <Route path="/collection" element={<Collection bookArray={bookArray} setBookArray={setBookArray}/>} />
-            {/* <Route path="*" element={<PageNotFound />} /> */}
+            <Route path="/collection/:category" element={<Collection bookArray={bookArray} setBookArray={setBookArray}/>} />
           </Routes>
       </div>
   );

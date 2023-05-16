@@ -1,4 +1,6 @@
-const CategoryItems = ({handleClick}) =>{
+import { Link } from 'react-router-dom';
+
+const CategoryItems = () =>{
 
     const categoryObjArray = [
         {
@@ -13,8 +15,6 @@ const CategoryItems = ({handleClick}) =>{
         },
         {
             id: 3,
-            // Adventure is not working >.<
-            // Good opportunity to error handle 
             category: "Adventure",
             color: "cat-yellow"
         },
@@ -35,11 +35,13 @@ const CategoryItems = ({handleClick}) =>{
             {
                 categoryObjArray.map((category)=>{
                     return(
-                        <li 
-                            key={category.id} 
-                            className={`category-items ${category.color}`} onClick={() =>{handleClick(category.category)}}>
-                            <p>{category.category}</p>
-                        </li>
+                        <Link to={`/collection/${category.category}`}>
+                            <li 
+                                key={category.id} 
+                                className={`category-items ${category.color}`}>
+                                <p>{category.category}</p>
+                            </li>
+                        </Link>
                     )
                 })
             }
