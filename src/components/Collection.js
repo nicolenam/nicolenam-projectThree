@@ -82,7 +82,7 @@ const Collection = ({bookArray, setBookArray}) => {
             }
         };
         getBookData();
-    }, [category]); 
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     // This useEffect function is used to add and remove a class for background color when component mounts and unmounts.
     useEffect(()=>{
