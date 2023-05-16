@@ -121,10 +121,14 @@ const Collection = ({bookArray, setBookArray}) => {
                     : 
                         <>
                             <div className="collection-title">
-                                <h2 className="collection-heading">Bookiverse Quest of {category}</h2>   
+                                {category !== 'undefined' ? (
+                                    <h2 className="collection-heading">Bookiverse Quest of {category}</h2>
+                                ) : (
+                                    <h2 className="collection-heading">Please Choose a Category!</h2>
+                                )}
                             </div>
                         </>
-                }
+            }
 
                 {
                     isError?
