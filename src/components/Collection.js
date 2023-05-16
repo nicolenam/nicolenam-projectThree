@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import Book from "./Book";
 import DisplayError from "./DisplayError";
@@ -17,23 +17,14 @@ const Collection = ({bookArray, setBookArray}) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false);
     const [overMaxNum, setOverMaxNum] = useState(false);
-    // const [dataLength, setDataLength] = useState('');
 
     // const [firstNum, setFirstNum] =  useState(''); 
 
-    // useEffect(()=>{
 
-    //     console.log(dataLength, 'new data length');
-
-    //         const min = 0;
-    //         const max = dataLength -12;
-    //         setFirstNum(Math.floor(Math.random() * (max - min + 1)) + min); 
-
-    // },[dataLength]);
 
     const url = new URL("https://openlibrary.org/search.json");
 
-    // Subject and audience is hardcoded because it's a virtual bookshelf app for children.
+    // Subject and audience is defined because it's a virtual bookshelf app for children.
     url.search = new URLSearchParams({
         subject: "picture books",
         q: category,
