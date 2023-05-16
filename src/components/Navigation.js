@@ -1,9 +1,11 @@
 import BookIcon from "../assets/book-icon.png";
 import ClosedBook from "../assets/closed-book.png";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Navigation = () =>{
+
+    const { category } = useParams();
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -29,7 +31,7 @@ const Navigation = () =>{
                     <Link to="/category">
                         <li className="category-items cat-pink">Bookigory</li>
                     </Link>
-                    <Link to="/collection">
+                    <Link to={`/collection/${category}`}>
                         <li className="category-items cat-yellow">Collection</li>
                     </Link>
                 </ul>
