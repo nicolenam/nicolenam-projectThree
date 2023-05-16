@@ -8,11 +8,12 @@ const Intro = () =>{
     useEffect(()=>{
 
         document.body.classList.add('intro-background');
+        
         return() =>{
             document.body.classList.remove('intro-background');
         }
 
-    },[]);
+    });
 
     return(
 

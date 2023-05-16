@@ -35,9 +35,8 @@ const CategoryItems = () =>{
             {
                 categoryObjArray.map((category)=>{
                     return(
-                        <Link to={`/collection/${category.title}`}>
+                        <Link key={category.id} to={`/collection/${category.title}`}>
                             <li 
-                                key={category.id} 
                                 className={`category-items ${category.color}`}>
                                 <p>{category.title}</p>
                             </li>

@@ -16,7 +16,7 @@ const Bookshelf = ({bookArray, setBookArray}) =>{
             document.body.classList.remove('bookshelf-background');
         }
 
-    },[]);
+    });
 
     const bookShelfItems = [];
 

@@ -39,8 +39,6 @@ const Collection = ({bookArray, setBookArray}) => {
                 const response = await fetch(url);
                 const collectionData = await response.json();
 
-                // setDataLength(collectionData.docs.length);
-
                 // Filter collectionData return an array of books with property name cover_i and author_name.
                 const booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined).slice(10,25);
 
@@ -76,6 +74,7 @@ const Collection = ({bookArray, setBookArray}) => {
                     // booksDetailsArray, bookImagesArray returns promises, and Promise.all() makes sure that all the responses get back before the books state gets updated. 
                     setBooks(await Promise.all(bookDetailsArray));
                     setImages(await Promise.all(bookImagesArray));
+
             }catch (err) {
                 console.log("ERROR:", err);
                 setIsError(true); 
@@ -83,7 +82,7 @@ const Collection = ({bookArray, setBookArray}) => {
             }
         };
         getBookData();
-    }, []);
+    }, [category]); 
 
     // This useEffect function is used to add and remove a class for background color when component mounts and unmounts.
     useEffect(()=>{
@@ -94,12 +93,12 @@ const Collection = ({bookArray, setBookArray}) => {
         document.body.classList.remove('collection-background');
         }
 
-    },[]); // eslint-disable-line react-hooks/exhaustive-deps
-
+    }); 
+    
     // Handles adding books to the bookArray:
+    // If imgUrl does not exist in bookArray update setBookArray by adding it.
     const handleClick = (imgUrl) =>{
         setIsError(false); 
-        //If imgUrl does not exist in bookArray update setBookArray by adding it.
         if(!bookArray.includes(imgUrl)){
             if(bookArray.length < 14){
                 setBookArray(prev => [...prev, imgUrl]);
@@ -113,7 +112,7 @@ const Collection = ({bookArray, setBookArray}) => {
     return (
         <>
             <Navigation />
-            
+
             <div className="wrapper">
             {
     
