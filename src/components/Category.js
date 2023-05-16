@@ -13,7 +13,7 @@ const Category = () =>{
             document.body.classList.remove('category-background');
         }
 
-    },[]) // eslint-disable-line react-hooks/exhaustive-deps
+    },[]);
 
     return (
 

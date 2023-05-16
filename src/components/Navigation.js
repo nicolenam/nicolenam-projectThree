@@ -1,7 +1,7 @@
-import BookIcon from "../assets/book-icon.png";
-import ClosedBook from "../assets/closed-book.png";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import BookIcon from "../assets/book-icon.png";
+import ClosedBook from "../assets/closed-book.png";
 
 const Navigation = () =>{
 

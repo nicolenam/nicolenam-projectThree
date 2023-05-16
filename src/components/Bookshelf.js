@@ -16,7 +16,7 @@ const Bookshelf = ({bookArray, setBookArray}) =>{
             document.body.classList.remove('bookshelf-background');
         }
 
-    },[]) // eslint-disable-line react-hooks/exhaustive-deps
+    },[]);
 
     const bookShelfItems = [];
 
@@ -35,7 +35,7 @@ const Bookshelf = ({bookArray, setBookArray}) =>{
       bookShelfItems.push(
       <BookshelfItem key={i} color={color} bookUrl={bookArray[i]} index={i} handleRemoveBook={handleRemoveBook} />
       )
-    }
+    };
 
     return(
         <>

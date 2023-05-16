@@ -6,8 +6,7 @@ const Loader = () =>{
             <img src={loader} className="loader" alt="spinning loader"/>
         </div> 
     )
-}
+};
 
 export default Loader;
-
 

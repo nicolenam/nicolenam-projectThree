@@ -1,5 +1,5 @@
-import errorImg from "../assets/error-image.png";
 import { Link } from "react-router-dom";
+import errorImg from "../assets/error-image.png";
 import BookIcon from "../assets/book-icon.png";
 
 
@@ -17,11 +17,11 @@ const DisplayError = () =>{
                         Choose a different category! 🚀
                     </p>
                     <Link to="/category">
-                    <div className="bookshelf-link">
-                        <img src={BookIcon} alt="books icon" />
-                        <p>View Category</p>
-                    </div>
-                </Link>
+                        <div className="bookshelf-link">
+                            <img src={BookIcon} alt="books icon" />
+                            <p>View Category</p>
+                        </div>
+                    </Link>
                 </div>
         </div>
     )

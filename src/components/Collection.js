@@ -20,11 +20,8 @@ const Collection = ({bookArray, setBookArray}) => {
 
     // const [firstNum, setFirstNum] =  useState(''); 
 
-
-
-    const url = new URL("https://openlibrary.org/search.json");
-
     // Subject and audience is defined because it's a virtual bookshelf app for children.
+    const url = new URL("https://openlibrary.org/search.json");
     url.search = new URLSearchParams({
         subject: "picture books",
         q: category,
@@ -45,7 +42,7 @@ const Collection = ({bookArray, setBookArray}) => {
                 // setDataLength(collectionData.docs.length);
 
                 // Filter collectionData return an array of books with property name cover_i and author_name.
-                const booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined).slice(10,22);
+                const booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined).slice(10,25);
 
                 // Map through collectionData to return an array of author's names: decided to go with the first one. 
                 const authorNames = booksWithAuthImg.map((bookObj)=> bookObj.author_name[0]);
@@ -86,7 +83,7 @@ const Collection = ({bookArray, setBookArray}) => {
             }
         };
         getBookData();
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, []);
 
     // This useEffect function is used to add and remove a class for background color when component mounts and unmounts.
     useEffect(()=>{
@@ -111,11 +108,12 @@ const Collection = ({bookArray, setBookArray}) => {
                 setOverMaxNum(true);
             }
         }
-    }
+    };
     
     return (
         <>
             <Navigation />
+            
             <div className="wrapper">
             {
     
