@@ -1,8 +1,6 @@
- 
 const Book = ({title, author, imgUrl, description, handleClick, bookInArray}) =>{
 
     return (
-   
         <div className={`book-item ${bookInArray? "disable-click" : ""}`}>
             <div className="img-container">
                 <img  src={imgUrl} alt={title} onClick={()=>{handleClick(imgUrl)}}/>
