@@ -5,27 +5,27 @@ const CategoryItems = () =>{
     const categoryObjArray = [
         {
             id: 1,
-            category: "Animals",
+            title: "Animals",
             color: "cat-orange"
         },
         {
             id: 2,
-            category: "Fairy Tales",
+            title: "Fairy Tales",
             color: "cat-green"
         },
         {
             id: 3,
-            category: "Adventure",
+            title: "Adventure",
             color: "cat-yellow"
         },
         {
             id: 4,
-            category: "Friendship",
+            title: "Friendship",
             color: "cat-blue"
         },
         {
             id: 5,
-            category: "Bedtime Stories",
+            title: "Bedtime Stories",
             color: "cat-pink"
         }
     ]
@@ -35,11 +35,11 @@ const CategoryItems = () =>{
             {
                 categoryObjArray.map((category)=>{
                     return(
-                        <Link to={`/collection/${category.category}`}>
+                        <Link to={`/collection/${category.title}`}>
                             <li 
                                 key={category.id} 
                                 className={`category-items ${category.color}`}>
-                                <p>{category.category}</p>
+                                <p>{category.title}</p>
                             </li>
                         </Link>
                     )

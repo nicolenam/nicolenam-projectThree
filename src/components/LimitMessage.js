@@ -1,5 +1,5 @@
-import errorImg from "../assets/error-image.png";
 import { Link } from "react-router-dom";
+import errorImg from "../assets/error-image.png";
 import BookIcon from "../assets/book-icon.png";
 
 const LimitMessage = () =>{
@@ -24,6 +24,6 @@ const LimitMessage = () =>{
             </div>
     </div>
     )
-}
+};
 
 export default LimitMessage;

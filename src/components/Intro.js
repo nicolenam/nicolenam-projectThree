@@ -12,7 +12,8 @@ const Intro = () =>{
             document.body.classList.remove('intro-background');
         }
 
-    },[]) // eslint-disable-line react-hooks/exhaustive-deps
+    },[]);
+
     return(
 
         <section className="intro wrapper">
@@ -27,9 +28,7 @@ const Intro = () =>{
                 </Link>
             </div>
         </section>       
-
-    
     )
-}
+};
 
 export default Intro;
