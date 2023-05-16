@@ -69,10 +69,10 @@ const Collection = ({bookArray, setBookArray}) => {
 
                     });
                         
-                    setIsLoading(false);
-
+                    
                     // booksDetailsArray, bookImagesArray returns promises, and Promise.all() makes sure that all the responses get back before the books state gets updated. 
                     setBooks(await Promise.all(bookDetailsArray));
+                    setIsLoading(false);
                     setImages(await Promise.all(bookImagesArray));
 
             }catch (err) {
