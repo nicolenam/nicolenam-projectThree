@@ -34,7 +34,7 @@ const Collection = ({bookArray, setBookArray}) => {
 
     // },[dataLength]);
 
-    const url = new URL("http://openlibrary.org/search.json");
+    const url = new URL("https://openlibrary.org/search.json");
 
     // Subject and audience is hardcoded because it's a virtual bookshelf app for children.
     url.search = new URLSearchParams({
@@ -68,7 +68,7 @@ const Collection = ({bookArray, setBookArray}) => {
 
                     const bookDetailsArray = bookKeys.map( async key =>{
 
-                        const bookUrl = `http://openlibrary.org${key}.json`;
+                        const bookUrl = `https://openlibrary.org${key}.json`;
                         const bookResponse = await fetch(bookUrl);
                         const bookData = await bookResponse.json();
                         return bookData;
@@ -80,7 +80,7 @@ const Collection = ({bookArray, setBookArray}) => {
                 
                     const bookImagesArray = imgKeys.map( async (key) =>{
                     
-                        const imgUrl = `http://covers.openlibrary.org/b/ID/${key}-L.jpg`;
+                        const imgUrl = `https://covers.openlibrary.org/b/ID/${key}-L.jpg`;
                         const imgResponse = await fetch(imgUrl);
                         return imgResponse.url;
 
