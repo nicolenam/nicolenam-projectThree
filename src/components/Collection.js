@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import loader from '../assets/call-to-action.png';
 import Book from "./Book";
 import DisplayError from "./DisplayError";
@@ -9,10 +9,7 @@ import Navigation from "./Navigation";
  
 const Collection = ({bookArray, setBookArray}) => {
 
-    // This gets the search path from the URL ie) 'collection?category=Fairy Tales' , which is assigned to userChoice and this query value is used to make the initial API call
-    const path = useLocation();
-    const category = new URLSearchParams(path.search);
-    const userChoice = category.get('category');
+    const { category } = useParams();
 
     const [books, setBooks] = useState([]);
     const [authors, setAuthors] = useState([]);
@@ -39,7 +36,7 @@ const Collection = ({bookArray, setBookArray}) => {
     // Subject and audience is hardcoded because it's a virtual bookshelf app for children.
     url.search = new URLSearchParams({
         subject: "picture books",
-        q: userChoice,
+        q: category,
         audience: "juvenile"
     });
 
@@ -137,7 +134,7 @@ const Collection = ({bookArray, setBookArray}) => {
                         </div> : 
                         <>
                             <div className="collection-title">
-                                <h2 className="collection-heading">Bookiverse Quest of {userChoice}</h2>   
+                                <h2 className="collection-heading">Bookiverse Quest of {category}</h2>   
                             </div>
                         </>
                 }
