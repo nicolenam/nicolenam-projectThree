@@ -45,7 +45,7 @@ const Collection = ({bookArray, setBookArray}) => {
                 // setDataLength(collectionData.docs.length);
 
                 // Filter collectionData return an array of books with property name cover_i and author_name.
-                const booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined).slice(10,22);
+                const booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined).slice(10,25);
 
                 // Map through collectionData to return an array of author's names: decided to go with the first one. 
                 const authorNames = booksWithAuthImg.map((bookObj)=> bookObj.author_name[0]);
