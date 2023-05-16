@@ -22,7 +22,7 @@ const LimitMessage = () =>{
                     </div>
                 </Link>
             </div>
-    </div>
+        </div>
     )
 };
 
