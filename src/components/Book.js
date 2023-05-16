@@ -4,7 +4,6 @@ const Book = ({title, author, imgUrl, description, handleClick, bookInArray}) =>
         <div className={`book-item ${bookInArray? "disable-click" : ""}`}>
             <div className="img-container">
                 <img  src={imgUrl} alt={title} onClick={()=>{handleClick(imgUrl)}}/>
-                <div className="heart-icon"></div>
             </div>
             <div>
                 <h3>{title}</h3>

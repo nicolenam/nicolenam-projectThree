@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
-import loader from '../assets/call-to-action.png';
 import Book from "./Book";
 import DisplayError from "./DisplayError";
 import LimitMessage from "./LimitMessage";
 import Navigation from "./Navigation";
+import Loader from "./Loader";
 
  
 const Collection = ({bookArray, setBookArray}) => {
@@ -129,9 +129,8 @@ const Collection = ({bookArray, setBookArray}) => {
             {
     
                 isLoading? 
-                        <div className="loader-container">
-                            <img src={loader} className="loader" alt="spinning loader"/>
-                        </div> : 
+                    <Loader />
+                    : 
                         <>
                             <div className="collection-title">
                                 <h2 className="collection-heading">Bookiverse Quest of {category}</h2>   
@@ -148,12 +147,7 @@ const Collection = ({bookArray, setBookArray}) => {
                     overMaxNum?
                     <LimitMessage />:null
                 }
-
-                {/* {
-                    !userChoice ?
-                    <PageNotFound /> : null
-                } */}
-
+                
                 <section className="collection-grid">
                 {
                     overMaxNum && !isLoading ? 

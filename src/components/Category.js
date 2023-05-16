@@ -6,21 +6,6 @@ import Navigation from "./Navigation";
 
 const Category = () =>{
 
-    // const [userChoice, setUserChoice] = useState('');
-    // const navigate = useNavigate();
-
-    // const handleClick = (category) =>{
-    //     console.log('User chose:', category);
-    //     setUserChoice(category);
-    // }
-    
-    // useEffect(()=>{
-    //     if(userChoice){
-    //         navigate(`/collection?category=${userChoice}`);
-    //     }
-
-    // },[userChoice, navigate])
-
     useEffect(()=>{
 
         document.body.classList.add('category-background');
