@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 const CategoryItems = () =>{
 
+    // This is for styling as well as the router.
     const categoryObjArray = [
         {
             id: 1,

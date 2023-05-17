@@ -8,7 +8,7 @@ const Book = ({title, author, imgUrl, description, handleClick, bookInArray}) =>
             <div>
                 <h3>{title}</h3>
                 <p>By {author}</p>
-                <p className="book-description">{`${description.slice(0,100)}...`}</p>
+                <p className="book-description">{description}</p>
             </div>
         </div>
     )
