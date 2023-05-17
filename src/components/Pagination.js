@@ -13,7 +13,7 @@ const Pagination = ({updatePageNum, numberOfPages, currentPage, paginateCollecti
                 {
                     pages.map((page)=>{
                         return(
-                            <button onClick={()=>{paginateCollection(page)}}>{page}</button>
+                            <button key={crypto.randomUUID()} onClick={()=>{paginateCollection(page)}}>{page}</button>
                         )
                     })
                 }

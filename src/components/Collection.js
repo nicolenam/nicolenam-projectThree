@@ -29,7 +29,7 @@ const Collection = ({bookArray, setBookArray}) => {
     
     // Pagination
     const numberOfBooks = collectionData.length;
-    const booksPerPage = 15;
+    const booksPerPage = 12;
     const numberOfPages = Math.ceil(numberOfBooks/booksPerPage);
 
     const paginateCollection = (page) =>{
@@ -40,8 +40,7 @@ const Collection = ({bookArray, setBookArray}) => {
         const startIndex = (page - 1) * booksPerPage; 
         const endIndex = startIndex + booksPerPage;
         
-        console.log(startIndex, endIndex);
-        console.log( "is this working", collectionData.slice(startIndex,endIndex));
+        // console.log(startIndex, endIndex);
         setCurrentPageList(collectionData.slice(startIndex,endIndex));
     }
 
@@ -86,14 +85,13 @@ const Collection = ({bookArray, setBookArray}) => {
 
                 // This condition is to avoid CORS err
                 if(category === "Fairy Tales"){
-                    booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined).slice(0, 30);
+                    booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined).slice(0, 15);
                 }else{
                     booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined);
                 }
 
-                // Map through collectionData to return an array of author's names: decided to go with the first one. 
+                // Map through booksWithAuth to get author name and keys
                 const authorNames = booksWithAuthImg.map((bookObj)=> bookObj.author_name[0]);
-                // Map through collectionData and make an array of book keys which is used to fetch details of each book.
                 const bookKeys = booksWithAuthImg.map((bookObj) => bookObj.key);
                 const imgKeys = booksWithAuthImg.map((bookObj)=> bookObj.cover_i);
 
@@ -215,7 +213,7 @@ const Collection = ({bookArray, setBookArray}) => {
                 </section>
 
                 {
-                    !isLoading?
+                    !isLoading && !isError?
 
                     <Pagination updatePageNum={updatePageNum} numberOfPages={numberOfPages} currentPage={currentPage} paginateCollection={paginateCollection}/>
                     :
