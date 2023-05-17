@@ -14,8 +14,6 @@ const Collection = ({bookArray, setBookArray}) => {
 
     // Arrays for data storing
     const [collectionData, setCollectionData] = useState([]);
-    // console.log(collectionData);
-
     // States for error handling, etc
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false);
@@ -35,12 +33,9 @@ const Collection = ({bookArray, setBookArray}) => {
     const paginateCollection = (page) =>{
 
         setCurrentPage(page);
-        
         // Define indexes used for slice method used create a shallow copy of the arrays used for pagination
         const startIndex = (page - 1) * booksPerPage; 
         const endIndex = startIndex + booksPerPage;
-        
-        // console.log(startIndex, endIndex);
         setCurrentPageList(collectionData.slice(startIndex,endIndex));
     }
 
@@ -51,13 +46,11 @@ const Collection = ({bookArray, setBookArray}) => {
         }else if (e.target.innerHTML === "Prev" && currentPage > 1){
             setCurrentPage(prev => prev -1);
         }
-
     }
 
     useEffect(()=>{
         paginateCollection(currentPage);
     },[currentPage, collectionData]); // eslint-disable-line react-hooks/exhaustive-deps
-
 
     // Search parameters
     const url = new URL("https://openlibrary.org/search.json");
@@ -77,12 +70,9 @@ const Collection = ({bookArray, setBookArray}) => {
                 //Initial call is made here:
                 const response = await fetch(url);
                 const collectionData = await response.json();
-
-                console.log("COLLECTION DATA:", collectionData);
                 
                 // Filter collectionData return an array of books with property name cover_i and author_name.
                 let booksWithAuthImg;
-
                 // This condition is to avoid CORS err
                 if(category === "Fairy Tales"){
                     booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined).slice(0, 15);
@@ -90,53 +80,46 @@ const Collection = ({bookArray, setBookArray}) => {
                     booksWithAuthImg = collectionData.docs.filter(book => book.cover_i !== undefined && book.author_name !== undefined);
                 }
 
-                // Map through booksWithAuth to get author name and keys
-                const authorNames = booksWithAuthImg.map((bookObj)=> bookObj.author_name[0]);
-                const bookKeys = booksWithAuthImg.map((bookObj) => bookObj.key);
-                const imgKeys = booksWithAuthImg.map((bookObj)=> bookObj.cover_i);
-
-                const bookDetailsArray = bookKeys.map(async (key, index) => {
-
-                    const bookUrl = `https://openlibrary.org${key}.json`;
+                const bookDetailsArray = booksWithAuthImg.map((bookObj) => ({
+                    key: bookObj.key,
+                    title: bookObj.title,
+                    author: bookObj.author_name[0],
+                    imgUrl: `https://covers.openlibrary.org/b/ID/${bookObj.cover_i}-L.jpg`,
+                }));
+                
+                const bookDescriptionPromises = bookDetailsArray.map(async (book) => {
+                    const bookUrl = `https://openlibrary.org${book.key}.json`;
                     const bookResponse = await fetch(bookUrl);
                     const bookData = await bookResponse.json();
-                    // console.log("BOOK DETAILS DATA:", bookData);
-
-                    const imgUrl = `https://covers.openlibrary.org/b/ID/${imgKeys[index]}-L.jpg`;
-                    const imgResponse = await fetch(imgUrl);
-
-                    return {
-                      key: bookData.key,
-                      title: bookData.title,
-                      description: bookData.description ? bookData.description.value || bookData.description : 'Description is currently unavailable',
-                      author: authorNames[index],
-                      imgUrl: imgResponse.url
-                    };
+              
+                    book.description = bookData.description ? (typeof bookData.description === 'string' ? bookData.description.slice(0, 100) : bookData.description.value.slice(0, 100)) : 'Description is currently unavailable';
+              
+                    return book;
                 });
-          
-                  setCollectionData(await Promise.all(bookDetailsArray));
 
-                  setIsLoading(false);
+                const bookDetailsWithDescription = await Promise.all(bookDescriptionPromises);
+
+                setCollectionData(bookDetailsWithDescription);
+                setIsLoading(false);
+
                 } catch (err) {
                   console.log("ERROR:", err);
                   setIsError(true);
                   setIsLoading(false);
                 }
               };
-          
               getBookData();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     // This useEffect function is used to add and remove a class for background color when component mounts and unmounts.
     useEffect(()=>{
-
         document.body.classList.add('collection-background');
 
         return() => {
         document.body.classList.remove('collection-background');
         }
 
-    }); 
+    });
     
     // Function for adding books url to the bookArray:
     const handleClick = (imgUrl) =>{

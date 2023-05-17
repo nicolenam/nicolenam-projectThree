@@ -19,7 +19,7 @@ const Category = () =>{
 
         <>
         <Navigation />
-            <div className="category wrapper">
+            <section className="category wrapper">
                 <div className="category-container">
                     <div className="category-content">
                         <h2>Book-egories</h2>
@@ -32,7 +32,7 @@ const Category = () =>{
                         <CategoryItems/>
                     </ul> 
                 </div>
-            </div>
+            </section>
 
         </>
     )
