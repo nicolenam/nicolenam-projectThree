@@ -57,7 +57,8 @@ const Collection = ({bookArray, setBookArray}) => {
 
     useEffect(()=>{
         paginateCollection(currentPage);
-    },[currentPage, collectionData]);
+    },[currentPage, collectionData]); // eslint-disable-line react-hooks/exhaustive-deps
+
 
     // Search parameters
     const url = new URL("https://openlibrary.org/search.json");
