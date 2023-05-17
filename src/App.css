@@ -483,7 +483,7 @@ nav img{
 .pagination button{
     background-color: #f69aa2;
     padding: 10px 20px;
-    margin: 0 20px;
+    margin: 0 5px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -678,6 +678,13 @@ nav img{
         cursor: pointer;
     }
 
+    /* PAGINATION BUTTON STYLES */
+    .pagination button{
+        background: none;
+        padding: 0 10px;
+        margin: 0;
+        cursor: pointer;
+    }
 }
 
 @media (max-width: 500px) {
