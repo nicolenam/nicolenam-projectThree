@@ -489,11 +489,6 @@ nav img{
     cursor: pointer;
 }
 
-.pagination a{
-    padding: 0 10px;
-    cursor: pointer;
-}
-
 /* PAGE NOT FOUND STYLES */
 
 .pageNotFound{

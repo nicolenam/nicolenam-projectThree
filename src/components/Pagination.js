@@ -13,7 +13,7 @@ const Pagination = ({updatePageNum, numberOfPages, currentPage, paginateCollecti
                 {
                     pages.map((page)=>{
                         return(
-                            <a onClick={()=>{paginateCollection(page)}}>{page}</a>
+                            <button onClick={()=>{paginateCollection(page)}}>{page}</button>
                         )
                     })
                 }
