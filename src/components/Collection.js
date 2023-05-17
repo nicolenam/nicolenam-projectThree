@@ -45,9 +45,9 @@ const Collection = ({bookArray, setBookArray}) => {
 
     const updatePageNum = (e) =>{
 
-        if(e.target.innerHTML === "Next"){
+        if(e.target.innerHTML === "Next" && currentPage < numberOfPages){
             setCurrentPage(prev => prev + 1);
-        }else{
+        }else if (e.target.innerHTML === "Prev" && currentPage > 1){
             setCurrentPage(prev => prev -1);
         }
 
