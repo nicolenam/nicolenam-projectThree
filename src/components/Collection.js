@@ -33,14 +33,16 @@ const Collection = ({bookArray, setBookArray}) => {
     const numberOfPages = Math.ceil(numberOfBooks/booksPerPage);
 
     const paginateCollection = (page) =>{
+
+        setCurrentPage(page);
         
         // Define indexes used for slice method used create a shallow copy of the arrays used for pagination
         const startIndex = (page - 1) * booksPerPage; 
         const endIndex = startIndex + booksPerPage;
         
-        console.log(startIndex, endIndex)
+        console.log(startIndex, endIndex);
         console.log( "is this working", collectionData.slice(startIndex,endIndex));
-        setCurrentPageList(collectionData.slice(startIndex,endIndex))
+        setCurrentPageList(collectionData.slice(startIndex,endIndex));
     }
 
     const updatePageNum = (e) =>{
@@ -209,8 +211,15 @@ const Collection = ({bookArray, setBookArray}) => {
                     )
 
                 }
-                    <Pagination updatePageNum={updatePageNum} numberOfPages={numberOfPages} currentPage={currentPage}/>
                 </section>
+
+                {
+                    !isLoading?
+
+                    <Pagination updatePageNum={updatePageNum} numberOfPages={numberOfPages} currentPage={currentPage} paginateCollection={paginateCollection}/>
+                    :
+                    null
+                }
             </div>
         </>
     );

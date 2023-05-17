@@ -469,6 +469,31 @@ nav img{
     display: none;
 }
 
+/* PAGINATION STYLES */
+
+.pagination{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    width: 100%;
+    margin: 50px auto;
+}
+
+.pagination button{
+    background-color: #f69aa2;
+    padding: 10px 20px;
+    margin: 0 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.pagination a{
+    padding: 0 10px;
+    cursor: pointer;
+}
+
 /* PAGE NOT FOUND STYLES */
 
 .pageNotFound{
