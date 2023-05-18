@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom"; 
+import Intro from "./components/Intro";
+import Bookshelf from "./components/Bookshelf";
+import Category from "./components/Category";
+import Collection from "./components/Collection";
 
 function App() {
+  
+  const [bookArray, setBookArray] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+      {/* Routing Config */}
+          <Routes>
+            <Route path="/" element={<Intro />} />
+            <Route path="/bookshelf" element={<Bookshelf bookArray={bookArray} setBookArray={setBookArray} />} />
+            <Route path="/category" element={<Category />} /> 
+            <Route path="/collection/:category" element={<Collection bookArray={bookArray} setBookArray={setBookArray}/>} />
+          </Routes>
+      </div>
   );
 }
 
 export default App;
+

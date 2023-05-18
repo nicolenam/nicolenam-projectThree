@@ -1,0 +1,59 @@
+Start with a landing page or home page that introduces the app and its features.
+Provide a link on the landing page that prompts the user to "Create Bookshelf"
+When the user clicks the link, navigate to the Bookshelf page or component...
+    - button click that unmounts Intro and mounts Bookshelf component
+
+
+On the Bookshelf page, display an empty bookshelf initially. (3x3) grid??
+Provide a plus icon, that the user can click to trigger the book selection process.
+When the user clicks the "Add Book" button, show Category component which allows the user to select a category:
+animals, fairy tales, adventure, friendship, bedtime stories. (gets passed as a prop to Collection)
+    - when the user clicks on the add book button Bookshelf is unmounted and Category component gets mounted 
+
+
+Use Open Library API to fetch book data based on the user's input. Display the search results in a list or grid format.
+    - ie. when the user clicks a button in Category component 'animals' it, the selection is passed as a prop into Collection Component(animals, fairy tales, adventures, friendship, bedtime stories) which triggers getCollection() then populates the Collection component with multiple Book Component
+    - how many books should i display? stretch goal is to paginate the Book Component
+
+
+Allow the user to select a book from the search results by clicking on it. Upon selection, display the book cover and details on thebookshelf. 
+    - once the book has been selected that Book Component is unmounted and added to the bookArray in the Bookshelf Component
+    - the same book cannot be added more than once 
+
+
+Add a button for the user to go back to their bookshelf to see what they have added, when it is fully added congratulate them for it and tell them. 
+
+Repeat the process to allow the user to add more books to their bookshelf.
+
+Components 
+
+    App: The main component that manages the whole structure.
+
+    Intro: The component that serves as the Intro, kind of like a 'call to action'
+
+    Bookshelf: The component responsible for displaying the user's virtual bookshelf, including the buttons which allows the user to add books
+
+    Category: A component that allows the user to select categories to choose the collection.
+
+    Collection: The component that fetches and displays the books based on the selected categories, showing them in a grid
+
+    Book: A component representing an individual book item with its cover image and details.
+
+    Menu: A component for navigation purposes.
+
+    stretch goals: branded cover not found images, error handling for cover images, store bookshelf in firebase,
+    paginate the Collections
+
+    TODO:
+
+    error handling logic
+    
+        if the user adds more than 14 show error message and show a button that navigates them to bookshelf
+        if the user clicks on the same book twice show error message
+
+
+    ability to remove books from Bookshelf
+        when it is full give them the option to remove books from the bookshelf
+
+
+    navigation 
