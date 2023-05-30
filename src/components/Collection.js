@@ -70,6 +70,8 @@ const Collection = ({bookArray, setBookArray}) => {
                 //Initial call is made here:
                 const response = await fetch(url);
                 const collectionData = await response.json();
+
+                console.log(collectionData, "data");
                 
                 // Filter collectionData return an array of books with property name cover_i and author_name.
                 let booksWithAuthImg;
